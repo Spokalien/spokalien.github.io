@@ -3,22 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>$UNC — The Flying UNC</title>
+
   <meta
     name="description"
     content="$UNC is The Flying UNC on Solana. The bison is loose. Join the flight."
   />
+
   <meta name="theme-color" content="#080a10" />
-  
-  <!-- WEBSITE ICON (FAVICON) - MAIN $UNC IMAGE -->
-  <link rel="icon" type="image/jpeg" href="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg" />
-  
+
+  <link
+    rel="icon"
+    type="image/jpeg"
+    href="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg"
+  />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <link
     href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
+
   <style>
     :root {
       --bg: #05070a;
@@ -36,78 +44,88 @@
       --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* =========================================
-       CUSTOM ROTATING CURSOR STYLES
-       ========================================= */
-    @media (hover: hover) and (pointer: fine) {
-      /* Hide default cursor on desktop */
-      * {
-        cursor: none !important;
-      }
-      
-      #custom-cursor {
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 60px;
-        height: 60px;
-        background-image: url("unc_carl.png");
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        pointer-events: none;
-        z-index: 999999;
-        will-change: transform;
-        animation: spinCursor 1.5s linear infinite;
-      }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    /* Hides the custom cursor on mobile devices */
-    @media (pointer: coarse) {
-      #custom-cursor {
-        display: none !important;
-      }
+    html {
+      scroll-behavior: smooth;
     }
 
-    @keyframes spinCursor {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to   { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    /* ========================================= */
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
     body {
+      position: relative;
+      overflow-x: hidden;
       background:
-        radial-gradient(circle at 90% 0%, rgba(255, 90, 31, 0.12), transparent 45rem),
-        radial-gradient(circle at 10% 45%, rgba(201, 255, 85, 0.08), transparent 40rem),
-        radial-gradient(circle at 50% 85%, rgba(64, 160, 255, 0.08), transparent 45rem),
+        radial-gradient(
+          circle at 90% 0%,
+          rgba(255, 90, 31, 0.12),
+          transparent 45rem
+        ),
+        radial-gradient(
+          circle at 10% 45%,
+          rgba(201, 255, 85, 0.08),
+          transparent 40rem
+        ),
+        radial-gradient(
+          circle at 50% 85%,
+          rgba(64, 160, 255, 0.08),
+          transparent 45rem
+        ),
         var(--bg);
       color: var(--text);
       font-family: "Manrope", sans-serif;
-      overflow-x: hidden;
-      position: relative;
     }
+
     body::before {
-      content: "";
       position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-      background-size: 50px 50px;
-      pointer-events: none;
       z-index: 0;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      background-image:
+        linear-gradient(
+          rgba(255, 255, 255, 0.015) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.015) 1px,
+          transparent 1px
+        );
+      background-size: 50px 50px;
     }
-    a { color: inherit; text-decoration: none; transition: var(--transition); }
-    button { font: inherit; background: none; border: none; transition: var(--transition); }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      background: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+    }
+
     .container {
       position: relative;
       z-index: 1;
       width: min(1200px, calc(100% - 40px));
       margin: 0 auto;
     }
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -119,105 +137,266 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
+
     .eyebrow::before {
-      width: 6px; height: 6px; border-radius: 50%;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
       background: var(--lime);
       box-shadow: 0 0 10px var(--lime);
       content: "";
     }
 
-    /* Nav */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 24px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--yellow);
+      box-shadow: 0 8px 24px rgba(255, 197, 41, 0.15);
+      color: #0c0903;
+    }
+
+    .button-primary:hover {
+      background: #ffe085;
+      box-shadow: 0 12px 28px rgba(255, 197, 41, 0.3);
+    }
+
+    .button-dark {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+    }
+
+    .button-dark:hover {
+      border-color: rgba(255, 197, 41, 0.4);
+      background: rgba(255, 197, 41, 0.05);
+    }
+
+    /* Custom cursor */
+    @media (hover: hover) and (pointer: fine) {
+      * {
+        cursor: none !important;
+      }
+
+      #custom-cursor {
+        position: fixed;
+        z-index: 999999;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 60px;
+        height: 60px;
+        pointer-events: none;
+        background-image: url("unc_carl.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        will-change: transform;
+        animation: spinCursor 1.5s linear infinite;
+      }
+    }
+
+    @media (pointer: coarse) {
+      #custom-cursor {
+        display: none !important;
+      }
+    }
+
+    @keyframes spinCursor {
+      from {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    /* Navigation */
     .nav-wrap {
-      position: fixed; top: 0; z-index: 100; width: 100%;
+      position: fixed;
+      z-index: 100;
+      top: 0;
+      width: 100%;
       border-bottom: 1px solid transparent;
       transition: var(--transition);
     }
+
     .nav-wrap.scrolled {
-      background: rgba(5, 7, 10, 0.75); 
       border-color: var(--line);
+      background: rgba(5, 7, 10, 0.78);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
-    nav { display: flex; align-items: center; justify-content: space-between; min-height: 84px; }
-    .brand { display: flex; align-items: center; gap: 12px; font-family: "Archivo Black", sans-serif; font-size: 1.3rem; letter-spacing: -0.05em; }
-    
-    /* BRAND MARK - Main $UNC Image */
+
+    nav {
+      display: flex;
+      min-height: 84px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: -0.05em;
+    }
+
     .brand-mark {
       display: block;
+      overflow: hidden;
       width: 44px;
       height: 44px;
-      border-radius: 12px;
-      overflow: hidden;
       border: 2px solid var(--yellow);
+      border-radius: 12px;
+      background: #000;
       box-shadow: 0 0 15px var(--glow-yellow);
       transform: rotate(-6deg);
       transition: var(--transition);
-      background: #000;
     }
+
     .brand-mark img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+
     .brand:hover .brand-mark {
       transform: rotate(0deg) scale(1.1);
     }
-    
-    .nav-links { display: flex; gap: 32px; color: var(--muted); font-size: 0.9rem; font-weight: 700; }
-    .nav-links a { position: relative; padding: 6px 0; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 6px 0;
+      white-space: nowrap;
+    }
+
     .nav-links a::after {
-      content: ""; position: absolute; bottom: 0; left: 0;
-      width: 0; height: 2px; background: var(--yellow);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--yellow);
+      content: "";
       transition: var(--transition);
     }
-    .nav-links a:hover { color: var(--text); }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
     .x-link {
-      display: grid; width: 42px; height: 42px; place-items: center;
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
       border: 1px solid var(--line);
       border-radius: 50%;
-      font-weight: 800;
       background: rgba(255, 255, 255, 0.02);
+      font-weight: 800;
     }
+
     .x-link:hover {
-      border-color: var(--yellow); color: var(--yellow);
+      border-color: var(--yellow);
       background: var(--glow-yellow);
+      color: var(--yellow);
       transform: translateY(-2px);
     }
-    .button {
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      min-height: 48px; padding: 0 24px;
-      border: 1px solid transparent; border-radius: 12px;
-      font-size: 0.88rem; font-weight: 800;
+
+    .menu-button {
+      display: none;
+      color: #fff;
+      font-size: 1.5rem;
     }
-    .button:hover { transform: translateY(-2px); }
-    .button-primary { background: var(--yellow); box-shadow: 0 8px 24px rgba(255, 197, 41, 0.15); color: #0c0903; }
-    .button-primary:hover { background: #ffe085; box-shadow: 0 12px 28px rgba(255, 197, 41, 0.3); }
-    .button-dark { border-color: var(--line); background: rgba(255, 255, 255, 0.03); color: var(--text); }
-    .button-dark:hover { border-color: rgba(255, 197, 41, 0.4); background: rgba(255, 197, 41, 0.05); }
-    .menu-button { display: none; color: white; font-size: 1.5rem; }
 
     /* Hero */
-    .hero { position: relative; min-height: 850px; padding: 160px 0 80px; overflow: hidden; }
-    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 40px; }
-    .hero-copy { position: relative; z-index: 2; }
+    .hero {
+      position: relative;
+      min-height: 850px;
+      overflow: hidden;
+      padding: 160px 0 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
+
     .trending {
-      display: inline-flex; align-items: center; gap: 10px;
-      margin-bottom: 24px; padding: 8px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      padding: 8px 16px;
       border: 1px solid rgba(201, 255, 85, 0.25);
       border-radius: 99px;
       background: rgba(201, 255, 85, 0.06);
       color: var(--lime);
       font-family: "DM Mono", monospace;
-      font-size: 0.75rem; font-weight: 700;
+      font-size: 0.75rem;
+      font-weight: 700;
       letter-spacing: 0.05em;
     }
+
     .trending strong {
-      display: grid; width: 18px; height: 18px; place-items: center;
-      border-radius: 50%; background: var(--lime); color: #05070a;
-      font-family: Arial, sans-serif; font-size: 0.7rem;
+      display: grid;
+      width: 18px;
+      height: 18px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--lime);
+      color: #05070a;
+      font-family: Arial, sans-serif;
+      font-size: 0.7rem;
     }
+
     .hero h1 {
       font-family: "Archivo Black", sans-serif;
       font-size: clamp(3.8rem, 7.5vw, 6.8rem);
@@ -225,56 +404,128 @@
       letter-spacing: -0.07em;
       text-transform: uppercase;
     }
-    .hero h1 .accent { color: var(--yellow); text-shadow: 4px 4px 0 var(--orange); }
-    .hero-description { max-width: 540px; margin: 28px 0 32px; color: var(--muted); font-size: 1.1rem; line-height: 1.75; }
-    .hero-description strong { color: white; }
-    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
-    .contract-mini {
-      display: flex; align-items: center; gap: 12px;
-      width: fit-content; max-width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--line); border-radius: 12px;
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(8px);
-      color: var(--muted);
-      font-family: "DM Mono", monospace; font-size: 0.75rem;
+
+    .hero h1 .accent {
+      color: var(--yellow);
+      text-shadow: 4px 4px 0 var(--orange);
     }
-    .contract-mini span { overflow: hidden; max-width: 250px; color: white; text-overflow: ellipsis; white-space: nowrap; }
+
+    .hero-description {
+      max-width: 540px;
+      margin: 28px 0 32px;
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.75;
+    }
+
+    .hero-description strong {
+      color: #fff;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .contract-mini {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: fit-content;
+      max-width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.35);
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 0.75rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .contract-mini span {
+      overflow: hidden;
+      max-width: 260px;
+      color: #fff;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     .copy-btn {
       padding: 6px 10px;
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 6px;
-      color: var(--yellow);
-      font-family: "DM Mono", monospace; font-size: 0.7rem; font-weight: 700;
       background: transparent;
+      color: var(--yellow);
+      font-family: "DM Mono", monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
     }
-    .copy-btn:hover { border-color: var(--yellow); background: rgba(255, 197, 41, 0.08); }
 
-    /* Hero Art */
-    .hero-art { position: relative; min-height: 540px; }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(2deg); }
-      50% { transform: translateY(-12px) rotate(0deg); }
+    .copy-btn:hover {
+      border-color: var(--yellow);
+      background: rgba(255, 197, 41, 0.08);
     }
+
+    .hero-art {
+      position: relative;
+      min-height: 540px;
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0) rotate(2deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(0deg);
+      }
+    }
+
     .image-frame {
-      position: absolute; inset: 12px 0 0 10px; overflow: hidden;
+      position: absolute;
+      inset: 12px 0 0 10px;
+      overflow: hidden;
       border: 1px solid rgba(255, 197, 41, 0.4);
       border-radius: 24px;
       background: #10141d;
       box-shadow: 20px 20px 0 rgba(255, 90, 31, 0.2);
-      transform: rotate(2deg);
       animation: float 6s ease-in-out infinite;
     }
+
     .image-frame::after {
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background:
-        linear-gradient(180deg, transparent 40%, rgba(5, 7, 10, 0.9) 100%),
-        linear-gradient(115deg, rgba(255, 90, 31, 0.15), transparent 50%);
-      content: ""; pointer-events: none;
+        linear-gradient(
+          180deg,
+          transparent 40%,
+          rgba(5, 7, 10, 0.9) 100%
+        ),
+        linear-gradient(
+          115deg,
+          rgba(255, 90, 31, 0.15),
+          transparent 50%
+        );
+      content: "";
+      pointer-events: none;
     }
-    .image-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+    .image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
     .art-label {
-      position: absolute; z-index: 3; right: -5px; bottom: 24px;
+      position: absolute;
+      z-index: 3;
+      right: -5px;
+      bottom: 24px;
       padding: 16px 20px;
       border: 1px solid rgba(255, 197, 41, 0.5);
       border-radius: 12px;
@@ -282,42 +533,676 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       color: var(--yellow);
       font-family: "Archivo Black", sans-serif;
-      font-size: 1.2rem; letter-spacing: -0.04em;
+      font-size: 1.2rem;
+      letter-spacing: -0.04em;
       text-transform: uppercase;
       transform: rotate(-3deg);
     }
+
     .art-label small {
-      display: block; margin-top: 4px;
+      display: block;
+      margin-top: 4px;
       color: var(--muted);
       font-family: "DM Mono", monospace;
-      font-size: 0.65rem; letter-spacing: 0.1em;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
     }
+
     .stamp {
-      position: absolute; z-index: 4; top: -12px; left: -20px;
-      display: grid; width: 110px; height: 110px; place-items: center;
+      position: absolute;
+      z-index: 4;
+      top: -12px;
+      left: -20px;
+      display: grid;
+      width: 110px;
+      height: 110px;
+      place-items: center;
       border: 2px dashed var(--lime);
       border-radius: 50%;
       background: rgba(5, 7, 10, 0.9);
+      box-shadow: 0 0 15px rgba(201, 255, 85, 0.1);
       color: var(--lime);
       font-family: "Archivo Black", sans-serif;
-      font-size: 0.82rem; line-height: 1.1; text-align: center;
+      font-size: 0.82rem;
+      line-height: 1.1;
+      text-align: center;
       transform: rotate(-12deg);
-      box-shadow: 0 0 15px rgba(201, 255, 85, 0.1);
     }
 
     /* Chart */
-    .chart-container-toggle { width: 100%; margin-top: 24px; }
-    .chart-iframe-wrapper {
-      margin-top: 16px;
-      border: 1px solid var(--line); border-radius: 16px;
-      overflow: hidden; background: var(--panel);
-      display: none;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    .chart-container-toggle {
+      width: 100%;
+      margin-top: 24px;
     }
-    .chart-iframe-wrapper.show { display: block; }
-    .chart-iframe-wrapper iframe { display: block; width: 100%; height: 450px; border: 0; }
 
-    /* UNC Meme Generator */
+    .chart-iframe-wrapper {
+      display: none;
+      overflow: hidden;
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .chart-iframe-wrapper.show {
+      display: block;
+    }
+
+    .chart-iframe-wrapper iframe {
+      display: block;
+      width: 100%;
+      height: 450px;
+      border: 0;
+    }
+
+    /* Ticker */
+    .ticker {
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--yellow);
+      color: #0b0e14;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      min-width: max-content;
+      gap: 40px;
+      padding: 14px 0;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      animation: ticker 30s linear infinite;
+    }
+
+    .ticker-track span::after {
+      margin-left: 40px;
+      color: var(--orange);
+      content: "✦";
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Sections */
+    section.section {
+      position: relative;
+      padding: 120px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 54px;
+    }
+
+    .section-title {
+      max-width: 680px;
+      margin-top: 16px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
+
+    .section-title em {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    .section-text {
+      max-width: 400px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 32px;
+    }
+
+    .manifesto {
+      display: flex;
+      min-height: 380px;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 40px;
+      border: 1px solid rgba(255, 90, 31, 0.3);
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 90, 31, 0.08),
+          transparent 70%
+        ),
+        var(--panel);
+    }
+
+    .manifesto-img-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 200px;
+      margin-top: 16px;
+      border: 1px solid rgba(255, 197, 41, 0.3);
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .manifesto-img-wrapper img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .manifesto:hover .manifesto-img-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .manifesto p {
+      font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .manifesto p span {
+      color: var(--yellow);
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .feature-card {
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      border-color: rgba(255, 197, 41, 0.4);
+      background: rgba(255, 197, 41, 0.03);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 24px;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(255, 197, 41, 0.1);
+      color: var(--yellow);
+      font-size: 1.2rem;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* Token */
+    .token-area {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(10, 14, 21, 0.6);
+      backdrop-filter: blur(5px);
+    }
+
+    .token-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+    }
+
+    .contract-card,
+    .token-info {
+      padding: 40px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel);
+    }
+
+    .contract-card h3,
+    .token-info h3 {
+      margin-bottom: 24px;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .contract-value {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px;
+      border: 1px solid rgba(64, 160, 255, 0.2);
+      border-radius: 12px;
+      background: rgba(64, 160, 255, 0.04);
+    }
+
+    .contract-value code {
+      overflow: hidden;
+      color: var(--blue);
+      font-family: "DM Mono", monospace;
+      font-size: clamp(0.78rem, 1.4vw, 0.95rem);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .contract-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .token-list {
+      list-style: none;
+    }
+
+    .token-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.92rem;
+    }
+
+    .token-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .token-list span {
+      color: var(--muted);
+    }
+
+    .token-list strong {
+      color: var(--text);
+      font-family: "DM Mono", monospace;
+      font-size: 0.85rem;
+    }
+
+    /* Roadmap */
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .roadmap-card {
+      position: relative;
+      min-height: 310px;
+      padding: 36px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel);
+      transition: var(--transition);
+    }
+
+    .roadmap-card:hover {
+      border-color: rgba(255, 197, 41, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .roadmap-card.active {
+      border-color: rgba(201, 255, 85, 0.35);
+      background:
+        linear-gradient(
+          155deg,
+          rgba(201, 255, 85, 0.05),
+          transparent 70%
+        ),
+        var(--panel);
+    }
+
+    .roadmap-number {
+      color: rgba(255, 255, 255, 0.08);
+      font-family: "Archivo Black", sans-serif;
+      font-size: 4.8rem;
+      line-height: 1;
+      letter-spacing: -0.08em;
+    }
+
+    .roadmap-card h3 {
+      position: relative;
+      margin: 32px 0 12px;
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    .roadmap-card p {
+      position: relative;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .badge {
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-family: "DM Mono", monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .badge-done {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--muted);
+    }
+
+    .badge-active {
+      border: 1px solid rgba(201, 255, 85, 0.3);
+      background: rgba(201, 255, 85, 0.1);
+      box-shadow: 0 0 10px rgba(201, 255, 85, 0.1);
+      color: var(--lime);
+    }
+
+    /* Buy */
+    .buy-panel {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 40px;
+      padding: 54px;
+      border: 1px solid rgba(255, 197, 41, 0.3);
+      border-radius: 28px;
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(255, 90, 31, 0.15),
+          transparent 25rem
+        ),
+        #090c12;
+    }
+
+    .buy-panel h2 {
+      margin: 16px 0;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
+
+    .buy-panel > div > p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .steps {
+      display: grid;
+      gap: 16px;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .step-number {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--yellow);
+      color: #0c0903;
+      font-family: "DM Mono", monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .step strong {
+      color: #fff;
+    }
+
+    /* ==================================================
+       BISON RUN GAME
+       ================================================== */
+    .game-shell {
+      overflow: hidden;
+      padding: 24px;
+      border: 1px solid rgba(255, 197, 41, 0.35);
+      border-radius: 28px;
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(255, 90, 31, 0.13),
+          transparent 25rem
+        ),
+        radial-gradient(
+          circle at 0% 100%,
+          rgba(64, 160, 255, 0.08),
+          transparent 25rem
+        ),
+        #090c12;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .game-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: 960px;
+      margin: 0 auto 16px;
+    }
+
+    .game-score-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .game-score-box {
+      min-width: 115px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 0.75rem;
+      text-align: left;
+    }
+
+    .game-score-box strong {
+      display: block;
+      margin-top: 2px;
+      color: var(--yellow);
+      font-size: 1rem;
+    }
+
+    .game-status {
+      color: var(--lime);
+      font-family: "DM Mono", monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .game-canvas-wrap {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      background: #080b11;
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.35);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    #uncGameCanvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      outline: none;
+      background: transparent;
+    }
+
+    .game-overlay {
+      position: absolute;
+      z-index: 4;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(5, 7, 10, 0.62);
+      backdrop-filter: blur(4px);
+      transition: opacity 0.25s ease;
+    }
+
+    .game-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .game-overlay-card {
+      width: min(430px, 100%);
+      padding: 30px;
+      border: 1px solid rgba(255, 197, 41, 0.4);
+      border-radius: 20px;
+      background: rgba(8, 10, 14, 0.94);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+      text-align: center;
+    }
+
+    .game-overlay-icon {
+      display: block;
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 16px;
+      overflow: hidden;
+      border: 3px solid var(--yellow);
+      border-radius: 50%;
+      background: #111;
+      box-shadow: 0 0 24px rgba(255, 197, 41, 0.25);
+    }
+
+    .game-overlay-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .game-overlay h3 {
+      margin-bottom: 8px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(1.6rem, 5vw, 2.3rem);
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .game-overlay h3 span {
+      color: var(--yellow);
+    }
+
+    .game-overlay p {
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    .game-overlay .button {
+      width: 100%;
+    }
+
+    .game-help {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 0.72rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .game-help kbd {
+      padding: 5px 9px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-bottom-width: 3px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      font-family: "DM Mono", monospace;
+    }
+
+    .game-image-warning {
+      display: none;
+      margin-top: 14px;
+      color: var(--orange);
+      font-family: "DM Mono", monospace;
+      font-size: 0.72rem;
+      text-align: center;
+    }
+
+    .game-image-warning.show {
+      display: block;
+    }
+
+    /* Meme generator */
     .meme-generator {
       display: grid;
       grid-template-columns: minmax(270px, 0.72fr) minmax(0, 1.28fr);
@@ -326,9 +1211,14 @@
       border: 1px solid rgba(255, 197, 41, 0.3);
       border-radius: 28px;
       background:
-        radial-gradient(circle at 100% 0%, rgba(255, 90, 31, 0.12), transparent 25rem),
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(255, 90, 31, 0.12),
+          transparent 25rem
+        ),
         #090c12;
     }
+
     .meme-controls {
       display: grid;
       align-content: start;
@@ -338,11 +1228,12 @@
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.025);
     }
+
     .meme-upload {
       display: flex;
+      min-height: 88px;
       align-items: center;
       justify-content: center;
-      min-height: 88px;
       padding: 18px;
       border: 1px dashed rgba(255, 197, 41, 0.55);
       border-radius: 14px;
@@ -351,48 +1242,50 @@
       text-align: center;
       transition: var(--transition);
     }
+
     .meme-upload:hover {
       border-color: var(--yellow);
       background: rgba(255, 197, 41, 0.12);
       transform: translateY(-2px);
     }
+
     .meme-upload input {
       display: none;
     }
+
     .meme-upload-content {
       display: grid;
       gap: 5px;
     }
-    .meme-upload-content strong {
-      font-size: 0.95rem;
-    }
-    .meme-upload-content span {
+
+    .meme-upload-content span,
+    .meme-file-name {
       color: var(--muted);
       font-family: "DM Mono", monospace;
       font-size: 0.7rem;
     }
+
     .meme-file-name {
       overflow: hidden;
-      color: var(--muted);
-      font-family: "DM Mono", monospace;
-      font-size: 0.7rem;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+
     .meme-field {
       display: grid;
       gap: 8px;
     }
+
     .meme-field > label,
     .meme-range-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      color: var(--text);
       font-size: 0.8rem;
       font-weight: 800;
     }
+
     .meme-field input[type="text"] {
       width: 100%;
       min-height: 46px;
@@ -402,27 +1295,31 @@
       outline: none;
       background: rgba(0, 0, 0, 0.28);
       color: var(--text);
-      font-family: "Manrope", sans-serif;
       font-size: 0.85rem;
     }
+
     .meme-field input[type="text"]:focus {
       border-color: rgba(255, 197, 41, 0.65);
       box-shadow: 0 0 0 3px rgba(255, 197, 41, 0.08);
     }
+
     .meme-range-head output {
       color: var(--yellow);
       font-family: "DM Mono", monospace;
       font-size: 0.72rem;
     }
+
     .meme-field input[type="range"] {
       width: 100%;
       accent-color: var(--yellow);
     }
+
     .meme-color-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
+
     .meme-color-row label {
       display: flex;
       align-items: center;
@@ -432,6 +1329,7 @@
       font-family: "DM Mono", monospace;
       font-size: 0.7rem;
     }
+
     .meme-color-row input[type="color"] {
       width: 38px;
       height: 32px;
@@ -440,34 +1338,32 @@
       border-radius: 7px;
       background: var(--panel);
     }
+
     .meme-check {
       display: flex;
       align-items: center;
       gap: 10px;
       color: var(--muted);
       font-size: 0.8rem;
-      line-height: 1.4;
     }
+
     .meme-check input {
       width: 17px;
       height: 17px;
       accent-color: var(--yellow);
     }
+
     .meme-actions {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 10px;
-      margin-top: 4px;
     }
-    .meme-actions .button {
-      min-height: 46px;
-      padding: 0 16px;
-    }
+
     .meme-actions .button:disabled {
       opacity: 0.45;
       pointer-events: none;
-      transform: none;
     }
+
     .meme-reset {
       padding: 0 14px;
       border: 1px solid var(--line);
@@ -476,37 +1372,41 @@
       font-size: 0.8rem;
       font-weight: 800;
     }
-    .meme-reset:hover {
-      border-color: rgba(255, 255, 255, 0.25);
-      color: var(--text);
-    }
+
     .meme-note {
       color: #687386;
       font-size: 0.72rem;
       line-height: 1.55;
     }
+
     .meme-preview {
       position: relative;
       display: flex;
-      align-items: center;
-      justify-content: center;
       min-width: 0;
       min-height: 520px;
+      align-items: center;
+      justify-content: center;
       padding: 18px;
       border: 1px dashed var(--line);
       border-radius: 20px;
       background:
-        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(
+          rgba(255, 255, 255, 0.018) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.018) 1px,
+          transparent 1px
+        ),
         #05070a;
       background-size: 28px 28px;
-      transition: var(--transition);
     }
+
     .meme-preview.dragging {
       border-color: var(--yellow);
-      background-color: rgba(255, 197, 41, 0.06);
-      box-shadow: inset 0 0 30px rgba(255, 197, 41, 0.08);
     }
+
     #memeCanvas {
       display: none;
       width: auto;
@@ -516,17 +1416,20 @@
       border-radius: 12px;
       box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
     }
+
     .meme-preview.has-image #memeCanvas {
       display: block;
     }
+
     .meme-empty {
       display: grid;
+      max-width: 310px;
       justify-items: center;
       gap: 10px;
-      max-width: 310px;
       color: var(--muted);
       text-align: center;
     }
+
     .meme-empty-icon {
       display: grid;
       width: 58px;
@@ -538,513 +1441,708 @@
       color: var(--yellow);
       font-size: 1.6rem;
     }
+
     .meme-empty strong {
       color: var(--text);
-      font-size: 1rem;
     }
+
     .meme-empty span {
       font-size: 0.8rem;
       line-height: 1.6;
     }
+
     .meme-preview.has-image .meme-empty {
       display: none;
     }
 
-    /* Ticker */
-    .ticker { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--yellow); color: #0b0e14; white-space: nowrap; }
-    .ticker-track {
-      display: inline-flex; gap: 40px; min-width: max-content; padding: 14px 0;
-      animation: ticker 30s linear infinite;
-      font-family: "Archivo Black", sans-serif;
-      font-size: 0.95rem; letter-spacing: -0.02em;
-      text-transform: uppercase;
-    }
-    .ticker-track span::after { margin-left: 40px; color: var(--orange); content: "✦"; }
-    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    /* Sections */
-    section.section { padding: 120px 0; position: relative; }
-    .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-bottom: 54px; }
-    .section-title {
-      max-width: 680px; margin-top: 16px;
-      font-family: "Archivo Black", sans-serif;
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      line-height: 0.95; letter-spacing: -0.06em;
-      text-transform: uppercase;
-    }
-    .section-title em { color: var(--orange); font-style: normal; }
-    .section-text { max-width: 400px; color: var(--muted); font-size: 1rem; line-height: 1.7; }
-
-    /* About */
-    .about-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 32px; }
-    .manifesto {
-      min-height: 380px; padding: 40px;
-      border: 1px solid rgba(255, 90, 31, 0.3);
-      border-radius: 24px;
-      background: linear-gradient(135deg, rgba(255, 90, 31, 0.08), transparent 70%), var(--panel);
-      display: flex; flex-direction: column; justify-content: space-between;
-      gap: 24px;
-    }
-    
-    /* MANIFESTO IMAGE STYLES */
-    .manifesto-img-wrapper {
-      width: 100%;
-      height: 200px;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 197, 41, 0.3);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-      margin-top: 16px;
-      position: relative;
-    }
-    .manifesto-img-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: var(--transition);
-    }
-    .manifesto:hover .manifesto-img-wrapper img {
-      transform: scale(1.05);
-    }
-
-    .manifesto p { font-size: clamp(1.3rem, 1.8vw, 1.7rem); font-weight: 800; line-height: 1.4; }
-    .manifesto p span { color: var(--yellow); }
-    .feature-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .feature-card {
-      padding: 32px;
-      border: 1px solid var(--line); border-radius: 20px;
-      background: rgba(255, 255, 255, 0.02);
-      transition: var(--transition);
-    }
-    .feature-card:hover { border-color: rgba(255, 197, 41, 0.4); background: rgba(255, 197, 41, 0.03); transform: translateY(-4px); }
-    .feature-icon {
-      display: grid; width: 44px; height: 44px; margin-bottom: 24px; place-items: center;
-      border-radius: 12px;
-      background: rgba(255, 197, 41, 0.1);
-      color: var(--yellow);
-      font-size: 1.2rem;
-    }
-    .feature-card h3 { margin-bottom: 10px; font-size: 1.05rem; font-weight: 800; }
-    .feature-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
-
-    /* Token */
-    .token-area { background: rgba(10, 14, 21, 0.6); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); backdrop-filter: blur(5px); }
-    .token-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; }
-    .contract-card, .token-info { padding: 40px; border: 1px solid var(--line); border-radius: 24px; background: var(--panel); }
-    .contract-card h3, .token-info h3 { margin-bottom: 24px; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
-    .contract-value {
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      padding: 18px;
-      border: 1px solid rgba(64, 160, 255, 0.2); border-radius: 12px;
-      background: rgba(64, 160, 255, 0.04);
-    }
-    .contract-value code {
-      overflow: hidden; color: var(--blue);
-      font-family: "DM Mono", monospace;
-      font-size: clamp(0.78rem, 1.4vw, 0.95rem);
-      text-overflow: ellipsis; white-space: nowrap;
-    }
-    .contract-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-    .token-list { list-style: none; }
-    .token-list li {
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      padding: 15px 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 0.92rem;
-    }
-    .token-list li:last-child { border-bottom: 0; }
-    .token-list span { color: var(--muted); }
-    .token-list strong { color: var(--text); font-family: "DM Mono", monospace; font-size: 0.85rem; }
-
-    /* Roadmap */
-    .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .roadmap-card {
-      position: relative; min-height: 310px; padding: 36px;
-      border: 1px solid var(--line); border-radius: 24px;
-      background: var(--panel);
-      transition: var(--transition);
-    }
-    .roadmap-card:hover { border-color: rgba(255, 197, 41, 0.3); transform: translateY(-4px); }
-    .roadmap-card.active {
-      border-color: rgba(201, 255, 85, 0.35);
-      background: linear-gradient(155deg, rgba(201, 255, 85, 0.05), transparent 70%), var(--panel);
-    }
-    .roadmap-number { color: rgba(255, 255, 255, 0.08); font-family: "Archivo Black", sans-serif; font-size: 4.8rem; line-height: 1; letter-spacing: -0.08em; }
-    .roadmap-card h3 { position: relative; margin: 32px 0 12px; font-size: 1.3rem; font-weight: 800; }
-    .roadmap-card p { position: relative; color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
-    .badge {
-      position: absolute; top: 32px; right: 32px;
-      padding: 6px 12px; border-radius: 20px;
-      font-family: "DM Mono", monospace;
-      font-size: 0.65rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.05em;
-    }
-    .badge-done { background: rgba(255, 255, 255, 0.05); color: var(--muted); }
-    .badge-active {
-      background: rgba(201, 255, 85, 0.1);
-      border: 1px solid rgba(201, 255, 85, 0.3);
-      color: var(--lime);
-      box-shadow: 0 0 10px rgba(201, 255, 85, 0.1);
-    }
-
-    /* Buy Panel */
-    .buy-panel {
-      display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 40px;
-      padding: 54px;
-      border: 1px solid rgba(255, 197, 41, 0.3);
-      border-radius: 28px;
-      background:
-        radial-gradient(circle at 100% 0%, rgba(255, 90, 31, 0.15), transparent 25rem),
-        #090c12;
-    }
-    .buy-panel h2 {
-      margin: 16px 0;
-      font-family: "Archivo Black", sans-serif;
-      font-size: clamp(2.4rem, 4vw, 3.8rem);
-      line-height: 0.94; letter-spacing: -0.06em;
-      text-transform: uppercase;
-    }
-    .buy-panel > div > p { color: var(--muted); font-size: 1rem; line-height: 1.7; }
-    .steps { display: grid; gap: 16px; }
-    .step {
-      display: flex; align-items: center; gap: 20px; padding: 20px;
-      border: 1px solid var(--line); border-radius: 16px;
-      background: rgba(0, 0, 0, 0.2);
-      transition: var(--transition);
-    }
-    .step:hover { border-color: rgba(255, 255, 255, 0.15); background: rgba(0, 0, 0, 0.3); }
-    .step-number {
-      display: grid; width: 36px; height: 36px; flex: 0 0 36px; place-items: center;
-      border-radius: 10px;
-      background: var(--yellow); color: #0c0903;
-      font-family: "DM Mono", monospace;
-      font-size: 0.82rem; font-weight: 700;
-    }
-    .step p { color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
-    .step strong { color: white; }
-
     /* Socials */
-    .socials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .socials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
     .social-card {
-      --accent: var(--yellow);
       position: relative;
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
       gap: 16px;
+      overflow: hidden;
       padding: 22px 24px;
       border: 1px solid var(--line);
       border-radius: 20px;
       background: var(--panel);
-      overflow: hidden;
       transition: var(--transition);
     }
-    .social-card::before {
-      content: "";
-      position: absolute; inset: 0;
-      background: radial-gradient(
-        circle at 0% 0%,
-        color-mix(in srgb, var(--accent) 18%, transparent),
-        transparent 55%
-      );
-      opacity: 0;
-      transition: var(--transition);
-      pointer-events: none;
-    }
+
     .social-card:hover {
-      border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+      border-color: rgba(255, 197, 41, 0.4);
       transform: translateY(-4px);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
     }
-    .social-card:hover::before { opacity: 1; }
+
     .social-icon {
-      display: grid; width: 48px; height: 48px; place-items: center;
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border: 1px solid rgba(255, 197, 41, 0.3);
       border-radius: 14px;
-      background: color-mix(in srgb, var(--accent) 14%, transparent);
-      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-      color: var(--accent);
-      transition: var(--transition);
+      background: rgba(255, 197, 41, 0.08);
+      color: var(--yellow);
+      font-size: 1.15rem;
     }
-    .social-card:hover .social-icon {
-      transform: rotate(-6deg) scale(1.05);
-      box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 35%, transparent);
+
+    .social-meta {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      gap: 4px;
     }
-    .social-meta { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-    .social-meta h3 { color: var(--text); font-size: 1.02rem; font-weight: 800; letter-spacing: -0.01em; }
+
+    .social-meta h3 {
+      font-size: 1.02rem;
+      font-weight: 800;
+    }
+
     .social-meta span {
+      overflow: hidden;
       color: var(--muted);
       font-family: "DM Mono", monospace;
       font-size: 0.75rem;
-      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
+
     .social-cta {
-      position: relative; z-index: 1;
-      display: inline-flex; align-items: center; gap: 4px;
       padding: 8px 14px;
-      border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      border: 1px solid rgba(255, 197, 41, 0.35);
       border-radius: 999px;
-      background: color-mix(in srgb, var(--accent) 8%, transparent);
-      color: var(--accent);
+      color: var(--yellow);
       font-family: "DM Mono", monospace;
-      font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.05em;
+      font-size: 0.72rem;
+      font-weight: 700;
       text-transform: uppercase;
       white-space: nowrap;
     }
-    .social-card:hover .social-cta {
-      background: var(--accent); color: #0a0d12;
-      border-color: var(--accent);
-    }
-    .social-cta span { transition: transform 0.25s ease; }
-    .social-card:hover .social-cta span { transform: translate(2px, -2px); }
 
     /* FAQ */
-    .faq-container { max-width: 800px; margin: 0 auto; }
-    .faq-item { border-bottom: 1px solid var(--line); padding: 24px 0; }
-    .faq-trigger {
-      display: flex; justify-content: space-between; align-items: center;
-      width: 100%; text-align: left;
-      font-size: 1.1rem; font-weight: 700; color: var(--text);
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
     }
-    .faq-trigger:hover { color: var(--yellow); }
-    .faq-icon { font-size: 1.2rem; color: var(--muted); transition: var(--transition); }
-    .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-    .faq-content p { padding-top: 16px; color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
-    .faq-item.active .faq-content { max-height: 200px; }
-    .faq-item.active .faq-icon { transform: rotate(45deg); color: var(--yellow); }
+
+    .faq-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-trigger {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .faq-trigger:hover {
+      color: var(--yellow);
+    }
+
+    .faq-icon {
+      color: var(--muted);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .faq-content {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .faq-content p {
+      padding-top: 16px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .faq-item.active .faq-content {
+      max-height: 220px;
+    }
+
+    .faq-item.active .faq-icon {
+      color: var(--yellow);
+      transform: rotate(45deg);
+    }
 
     /* Footer */
-    footer { padding: 80px 0 32px; border-top: 1px solid var(--line); }
+    footer {
+      padding: 80px 0 32px;
+      border-top: 1px solid var(--line);
+    }
+
     .footer-main {
-      display: flex; align-items: flex-start; justify-content: space-between; gap: 40px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
       padding-bottom: 44px;
       border-bottom: 1px solid var(--line);
     }
+
     .footer-title {
       max-width: 580px;
       font-family: "Archivo Black", sans-serif;
       font-size: clamp(2.4rem, 5vw, 4rem);
-      line-height: 0.9; letter-spacing: -0.06em;
+      line-height: 0.9;
+      letter-spacing: -0.06em;
       text-transform: uppercase;
     }
-    .footer-title span { color: var(--yellow); }
-    .socials { display: flex; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
-    .socials a {
-      display: grid; width: 52px; height: 52px; place-items: center;
-      border: 1px solid var(--line); border-radius: 14px;
-      font-size: 1.1rem;
-      background: rgba(255, 255, 255, 0.02);
+
+    .footer-title span {
+      color: var(--yellow);
     }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+      gap: 12px;
+    }
+
+    .socials a {
+      display: grid;
+      width: 52px;
+      height: 52px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 1.1rem;
+    }
+
     .socials a:hover {
-      border-color: var(--yellow); color: var(--yellow);
+      border-color: var(--yellow);
       background: var(--glow-yellow);
+      color: var(--yellow);
       transform: translateY(-3px);
     }
+
     .footer-bottom {
-      display: flex; justify-content: space-between; gap: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
       padding-top: 32px;
-      color: #616b7c; font-size: 0.76rem; line-height: 1.6;
+      color: #616b7c;
+      font-size: 0.76rem;
+      line-height: 1.6;
     }
-    .footer-bottom p:last-child { max-width: 500px; text-align: right; }
+
+    .footer-bottom p:last-child {
+      max-width: 500px;
+      text-align: right;
+    }
 
     /* Toast */
     .toast {
-      position: fixed; z-index: 1000; right: 24px; bottom: 24px;
+      position: fixed;
+      z-index: 1000;
+      right: 24px;
+      bottom: 24px;
       padding: 14px 20px;
-      border: 1px solid rgba(201, 255, 85, 0.3); border-radius: 12px;
+      border: 1px solid rgba(201, 255, 85, 0.3);
+      border-radius: 12px;
       background: #090e05;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       color: var(--lime);
       font-family: "DM Mono", monospace;
-      font-size: 0.8rem; font-weight: 700;
-      opacity: 0; pointer-events: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
       transform: translateY(10px);
       transition: var(--transition);
     }
-    .toast.show { opacity: 1; transform: translateY(0); }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1050px) {
+      .nav-links {
+        gap: 14px;
+        font-size: 0.75rem;
+      }
+    }
 
     @media (max-width: 980px) {
-      .socials-grid { grid-template-columns: repeat(2, 1fr); }
+      .socials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 850px) {
-      .nav-links { display: none; }
-      .menu-button { display: block; }
-      .nav-links.mobile-open {
-        position: fixed; inset: 0; top: 84px; z-index: 99;
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        gap: 32px; width: 100%; height: calc(100vh - 84px); padding: 40px;
-        background: rgba(5, 7, 10, 0.96);
-        backdrop-filter: blur(20px);
-        font-size: 1.4rem;
+      .nav-links {
+        display: none;
       }
-      .nav-links.mobile-open a { color: var(--text); }
-      .hero { min-height: auto; padding: 140px 0 60px; }
-      .hero-grid, .about-grid, .token-grid, .buy-panel { grid-template-columns: 1fr; }
-      .hero-art { min-height: 480px; max-width: 580px; margin: 0 auto; width: 100%; }
-      .roadmap { grid-template-columns: 1fr; }
-      .section-heading, .footer-main { align-items: flex-start; flex-direction: column; gap: 20px; }
-      .meme-generator { grid-template-columns: 1fr; }
-      .meme-preview { min-height: 420px; }
+
+      .menu-button {
+        display: block;
+      }
+
+      .nav-actions .button {
+        display: none;
+      }
+
+      .nav-links.mobile-open {
+        position: fixed;
+        z-index: 99;
+        inset: 84px 0 0;
+        display: flex;
+        width: 100%;
+        height: calc(100vh - 84px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 25px;
+        padding: 40px;
+        background: rgba(5, 7, 10, 0.97);
+        font-size: 1.25rem;
+        backdrop-filter: blur(20px);
+      }
+
+      .nav-links.mobile-open a {
+        color: var(--text);
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 140px 0 60px;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .token-grid,
+      .buy-panel,
+      .meme-generator {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-art {
+        width: 100%;
+        max-width: 580px;
+        min-height: 480px;
+        margin: 0 auto;
+      }
+
+      .roadmap {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading,
+      .footer-main {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .meme-preview {
+        min-height: 420px;
+      }
     }
 
     @media (max-width: 560px) {
-      .socials-grid { grid-template-columns: 1fr; }
+      .socials-grid {
+        grid-template-columns: 1fr;
+      }
+
       .social-card {
         grid-template-columns: auto 1fr;
-        grid-template-areas: "icon meta" "cta cta";
-        row-gap: 14px;
+        grid-template-areas:
+          "icon meta"
+          "cta cta";
       }
-      .social-icon { grid-area: icon; }
-      .social-meta { grid-area: meta; }
-      .social-cta { grid-area: cta; justify-content: center; }
+
+      .social-icon {
+        grid-area: icon;
+      }
+
+      .social-meta {
+        grid-area: meta;
+      }
+
+      .social-cta {
+        grid-area: cta;
+        text-align: center;
+      }
+
+      .game-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .game-status {
+        text-align: left;
+      }
     }
 
     @media (max-width: 540px) {
-      .container { width: calc(100% - 24px); }
-      .hero h1 { font-size: clamp(3rem, 15vw, 4.8rem); }
-      .buy-panel { padding: 28px; }
-      .footer-bottom { flex-direction: column; }
-      .footer-bottom p:last-child { text-align: left; }
-      .meme-generator { padding: 12px; }
-      .meme-controls { padding: 18px; }
-      .meme-preview { min-height: 320px; padding: 10px; }
-      .meme-actions { grid-template-columns: 1fr; }
-      .meme-reset { min-height: 44px; }
+      .container {
+        width: calc(100% - 24px);
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 15vw, 4.8rem);
+      }
+
+      .buy-panel,
+      .contract-card,
+      .token-info {
+        padding: 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+
+      .footer-bottom p:last-child {
+        text-align: left;
+      }
+
+      .meme-generator,
+      .game-shell {
+        padding: 12px;
+      }
+
+      .meme-controls {
+        padding: 18px;
+      }
+
+      .meme-preview {
+        min-height: 320px;
+        padding: 10px;
+      }
+
+      .meme-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .meme-reset {
+        min-height: 44px;
+      }
+
+      .game-overlay-card {
+        padding: 20px;
+      }
+
+      .game-overlay-icon {
+        width: 58px;
+        height: 58px;
+      }
     }
   </style>
 </head>
-<body>
 
-  <!-- CUSTOM ROTATING CURSOR ELEMENT -->
+<body>
+  <!-- Custom rotating cursor -->
   <div id="custom-cursor"></div>
-  
+
+  <!-- Navigation -->
   <div class="nav-wrap" id="navWrap">
     <div class="container">
       <nav>
         <a class="brand" href="#top" aria-label="$UNC Home">
-          <!-- TOP LEFT ICON - Main $UNC Image -->
           <span class="brand-mark">
-            <img src="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg" alt="$UNC Logo" />
+            <img
+              src="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg"
+              alt="$UNC logo"
+            />
           </span>
+
           <span>$UNC</span>
         </a>
+
         <div class="nav-links" id="navLinks">
           <a href="#about">The Story</a>
           <a href="#token">Token</a>
           <a href="#roadmap">Flight Plan</a>
           <a href="#buy">How to Buy</a>
+          <a href="#game">Game</a>
           <a href="#meme-lab">Meme Lab</a>
           <a href="#socials">Socials</a>
           <a href="#faq">FAQ</a>
         </div>
+
         <div class="nav-actions">
-          <a class="x-link" href="https://x.com/FlyingUncSolana" target="_blank" rel="noopener noreferrer" aria-label="X Profile">𝕏</a>
-          <a class="button button-primary" href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer">Buy $UNC ↗</a>
-          <button class="menu-button" id="menuButton" aria-label="Toggle navigation">☰</button>
+          <a
+            class="x-link"
+            href="https://x.com/FlyingUncSolana"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X Profile"
+          >𝕏</a>
+
+          <a
+            class="button button-primary"
+            href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Buy $UNC ↗</a>
+
+          <button
+            class="menu-button"
+            id="menuButton"
+            type="button"
+            aria-label="Toggle navigation"
+          >☰</button>
         </div>
       </nav>
     </div>
   </div>
 
   <main id="top">
+    <!-- Hero -->
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <div class="trending"><strong>𝕏</strong>Trending on X</div>
-          <h1>The<br /><span class="accent">Flying</span><br />UNC.</h1>
+          <div class="trending">
+            <strong>𝕏</strong>
+            Trending on X
+          </div>
+
+          <h1>
+            The<br />
+            <span class="accent">Flying</span><br />
+            UNC.
+          </h1>
+
           <p class="hero-description">
-            The bison is loose, the timeline is watching, and <strong>$UNC is taking flight on Solana.</strong>
-            No walking backward, no slowing down. Just pure, unbridled build momentum.
+            The bison is loose, the timeline is watching, and
+            <strong>$UNC is taking flight on Solana.</strong>
+            No walking backward, no slowing down. Just pure, unbridled
+            build momentum.
           </p>
+
           <div class="hero-buttons">
-            <a class="button button-primary" href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer">Enter the Flight ↗</a>
-            <button class="button button-dark" id="chartToggleBtn">📊 Toggle Live Chart</button>
+            <a
+              class="button button-primary"
+              href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Enter the Flight ↗</a>
+
+            <a class="button button-dark" href="#game">🎮 Play Bison Run</a>
+
+            <button
+              class="button button-dark"
+              id="chartToggleBtn"
+              type="button"
+            >📊 Toggle Live Chart</button>
           </div>
+
           <div class="contract-mini">
-            <span>CA: 6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump</span>
-            <button class="copy-btn" data-copy="6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump">COPY</button>
+            <span>
+              CA: 6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump
+            </span>
+
+            <button
+              class="copy-btn"
+              type="button"
+              data-copy="6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump"
+            >COPY</button>
           </div>
+
           <div class="chart-container-toggle">
-            <div class="chart-iframe-wrapper" id="chartIframeWrapper"></div>
+            <div
+              class="chart-iframe-wrapper"
+              id="chartIframeWrapper"
+            ></div>
           </div>
         </div>
+
         <div class="hero-art">
-          <div class="stamp">UNC<br />IS<br />AIRBORNE</div>
-          <div class="image-frame">
-            <img src="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg" alt="The Flying UNC bison artwork" referrerpolicy="no-referrer" />
+          <div class="stamp">
+            UNC<br />
+            IS<br />
+            AIRBORNE
           </div>
-          <div class="art-label">Bison Mode<small>NO BRAKES. ALL FLIGHT.</small></div>
+
+          <div class="image-frame">
+            <img
+              src="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg"
+              alt="The Flying UNC bison artwork"
+              referrerpolicy="no-referrer"
+            />
+          </div>
+
+          <div class="art-label">
+            Bison Mode
+            <small>NO BRAKES. ALL FLIGHT.</small>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Ticker -->
     <div class="ticker" aria-hidden="true">
       <div class="ticker-track">
-        <span>$UNC IS FLYING</span><span>THE BISON IS LOOSE</span><span>SOLANA MEME ENERGY</span><span>THE FLYING UNC</span><span>JOIN THE HERD</span>
-        <span>$UNC IS FLYING</span><span>THE BISON IS LOOSE</span><span>SOLANA MEME ENERGY</span><span>THE FLYING UNC</span><span>JOIN THE HERD</span>
+        <span>$UNC IS FLYING</span>
+        <span>THE BISON IS LOOSE</span>
+        <span>SOLANA MEME ENERGY</span>
+        <span>THE FLYING UNC</span>
+        <span>JOIN THE HERD</span>
+
+        <span>$UNC IS FLYING</span>
+        <span>THE BISON IS LOOSE</span>
+        <span>SOLANA MEME ENERGY</span>
+        <span>THE FLYING UNC</span>
+        <span>JOIN THE HERD</span>
       </div>
     </div>
 
+    <!-- About -->
     <section class="section" id="about">
       <div class="container">
         <div class="section-heading">
           <div>
             <span class="eyebrow">The Story</span>
-            <h2 class="section-title">Not every UNC was built to <em>walk.</em></h2>
+
+            <h2 class="section-title">
+              Not every UNC was built to <em>walk.</em>
+            </h2>
           </div>
-          <p class="section-text">$UNC is a Solana community movement engineered for those who laugh at chaos, survive the shakeouts, and keep building upward.</p>
+
+          <p class="section-text">
+            $UNC is a Solana community movement engineered for those who
+            laugh at chaos, survive the shakeouts, and keep building upward.
+          </p>
         </div>
+
         <div class="about-grid">
           <article class="manifesto">
             <div>
               <span class="eyebrow">The UNC Manifesto</span>
-              <!-- IMAGE ADDED TO UNC MANIFESTO -->
+
               <div class="manifesto-img-wrapper">
-                <img src="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg" alt="The Flying UNC Manifesto Artwork" referrerpolicy="no-referrer" />
+                <img
+                  src="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg"
+                  alt="The Flying UNC Manifesto artwork"
+                  referrerpolicy="no-referrer"
+                />
               </div>
             </div>
-            <p>“When the market gets wild, the herd does not panic. <span>It gets wings.</span>”</p>
+
+            <p>
+              “When the market gets wild, the herd does not panic.
+              <span>It gets wings.</span>”
+            </p>
           </article>
+
           <div class="feature-cards">
-            <article class="feature-card"><div class="feature-icon">✦</div><h3>Community First</h3><p>Fully owned by the herd. Driven by relentless content, raids, and shared conviction.</p></article>
-            <article class="feature-card"><div class="feature-icon">◎</div><h3>Built on Solana</h3><p>Utilizing high-speed, cost-effective infrastructure ready for global trading volume.</p></article>
-            <article class="feature-card"><div class="feature-icon">𝕏</div><h3>Timeline Takeover</h3><p>Designed to thrive on raw community energy, X raids, spaces, and replies.</p></article>
-            <article class="feature-card"><div class="feature-icon">↑</div><h3>Reversal Mindset</h3><p>While standard projects fade during dips, the Flying UNC builds back stronger.</p></article>
+            <article class="feature-card">
+              <div class="feature-icon">✦</div>
+              <h3>Community First</h3>
+              <p>
+                Fully owned by the herd. Driven by relentless content,
+                raids, and shared conviction.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">◎</div>
+              <h3>Built on Solana</h3>
+              <p>
+                Utilizing high-speed, cost-effective infrastructure ready
+                for global trading volume.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">𝕏</div>
+              <h3>Timeline Takeover</h3>
+              <p>
+                Designed to thrive on raw community energy, X raids,
+                spaces, and replies.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">↑</div>
+              <h3>Reversal Mindset</h3>
+              <p>
+                While standard projects fade during dips, the Flying UNC
+                builds back stronger.
+              </p>
+            </article>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Token -->
     <section class="section token-area" id="token">
       <div class="container">
         <div class="section-heading">
           <div>
             <span class="eyebrow">Verify Before You Fly</span>
-            <h2 class="section-title">The official <em>$UNC</em> details.</h2>
+
+            <h2 class="section-title">
+              The official <em>$UNC</em> details.
+            </h2>
           </div>
-          <p class="section-text">Always verify the contract address before initiating any swap. Security first, herd second.</p>
+
+          <p class="section-text">
+            Always verify the contract address before initiating any swap.
+            Security first, herd second.
+          </p>
         </div>
+
         <div class="token-grid">
           <article class="contract-card">
             <h3>Official Contract Address</h3>
+
             <div class="contract-value">
-              <code>6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump</code>
-              <button class="copy-btn" data-copy="6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump">COPY CA</button>
+              <code>
+                6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump
+              </code>
+
+              <button
+                class="copy-btn"
+                type="button"
+                data-copy="6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump"
+              >COPY CA</button>
             </div>
+
             <div class="contract-actions">
-              <a class="button button-primary" href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer">Buy on Pump.fun ↗</a>
-              <a class="button button-dark" href="https://solscan.io/token/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer">View on Solscan ↗</a>
+              <a
+                class="button button-primary"
+                href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Buy on Pump.fun ↗</a>
+
+              <a
+                class="button button-dark"
+                href="https://solscan.io/token/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump"
+                target="_blank"
+                rel="noopener noreferrer"
+              >View on Solscan ↗</a>
             </div>
           </article>
+
           <article class="token-info">
             <h3>Token Information</h3>
+
             <ul class="token-list">
               <li><span>Ticker</span><strong>$UNC</strong></li>
               <li><span>Name</span><strong>The Flying UNC</strong></li>
               <li><span>Network</span><strong>Solana</strong></li>
-              <li><span>Tax Structure</span><strong>0% (Buy/Sell)</strong></li>
+              <li><span>Tax Structure</span><strong>0% Buy/Sell</strong></li>
               <li><span>Launch Platform</span><strong>Pump.fun</strong></li>
             </ul>
           </article>
@@ -1052,53 +2150,228 @@
       </div>
     </section>
 
+    <!-- Roadmap -->
     <section class="section" id="roadmap">
       <div class="container">
         <div class="section-heading">
           <div>
             <span class="eyebrow">Flight Plan</span>
-            <h2 class="section-title">From the timeline to the <em>stratosphere.</em></h2>
+
+            <h2 class="section-title">
+              From the timeline to the <em>stratosphere.</em>
+            </h2>
           </div>
-          <p class="section-text">No empty claims. We lay down infrastructure and feed the culture continuously.</p>
+
+          <p class="section-text">
+            No empty claims. We lay down infrastructure and feed the
+            culture continuously.
+          </p>
         </div>
+
         <div class="roadmap">
-          <article class="roadmap-card"><span class="badge badge-done">Completed</span><span class="roadmap-number">01</span><h3>Bison Escapes</h3><p>Launch official tokens, distribute branding assets, establish core socials, and test engine ignition.</p></article>
-          <article class="roadmap-card active"><span class="badge badge-active">In Progress</span><span class="roadmap-number">02</span><h3>Build & Reverse</h3><p>Cultivating active community hubs, organizing daily spaces, running content challenges, and preparing marketing reversals.</p></article>
-          <article class="roadmap-card"><span class="roadmap-number">03</span><h3>Full Airborne Mode</h3><p>Expand mainstream meme integrations, community-driven tier listings, and scaling ecosystem partnerships.</p></article>
+          <article class="roadmap-card">
+            <span class="badge badge-done">Completed</span>
+            <span class="roadmap-number">01</span>
+            <h3>Bison Escapes</h3>
+            <p>
+              Launch official tokens, distribute branding assets,
+              establish core socials, and test engine ignition.
+            </p>
+          </article>
+
+          <article class="roadmap-card active">
+            <span class="badge badge-active">In Progress</span>
+            <span class="roadmap-number">02</span>
+            <h3>Build & Reverse</h3>
+            <p>
+              Cultivating active community hubs, organizing daily spaces,
+              running content challenges, and preparing marketing reversals.
+            </p>
+          </article>
+
+          <article class="roadmap-card">
+            <span class="roadmap-number">03</span>
+            <h3>Full Airborne Mode</h3>
+            <p>
+              Expand mainstream meme integrations, community-driven tier
+              listings, and scaling ecosystem partnerships.
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
+    <!-- How to buy -->
     <section class="section" id="buy">
       <div class="container">
         <div class="buy-panel">
           <div>
             <span class="eyebrow">Ready for Takeoff?</span>
-            <h2>How to buy <span style="color: var(--yellow)">$UNC</span></h2>
-            <p>Join the flight in a few easy steps. Keep some SOL on hand for minor network gas transaction costs.</p>
+
+            <h2>
+              How to buy
+              <span style="color: var(--yellow);">$UNC</span>
+            </h2>
+
+            <p>
+              Join the flight in a few easy steps. Keep some SOL on hand
+              for minor network transaction costs.
+            </p>
+
             <div style="margin-top: 32px;">
-              <a class="button button-primary" href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer">Buy $UNC on Pump.fun ↗</a>
+              <a
+                class="button button-primary"
+                href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Buy $UNC on Pump.fun ↗</a>
             </div>
           </div>
+
           <div class="steps">
-            <div class="step"><span class="step-number">01</span><p><strong>Get a Solana wallet.</strong> Set up a Phantom, Solflare, or Backpack wallet on your browser or mobile phone.</p></div>
-            <div class="step"><span class="step-number">02</span><p><strong>Add SOL.</strong> Purchase SOL from an exchange or bridge it, then transfer it directly into your wallet.</p></div>
-            <div class="step"><span class="step-number">03</span><p><strong>Connect to a DEX.</strong> Navigate to Pump.fun, Raydium, or Jupiter and connect your newly created wallet.</p></div>
-            <div class="step"><span class="step-number">04</span><p><strong>Swap for $UNC.</strong> Input our official verified CA address, set your preferred slippage, and swap.</p></div>
+            <div class="step">
+              <span class="step-number">01</span>
+              <p>
+                <strong>Get a Solana wallet.</strong>
+                Set up Phantom, Solflare, or Backpack.
+              </p>
+            </div>
+
+            <div class="step">
+              <span class="step-number">02</span>
+              <p>
+                <strong>Add SOL.</strong>
+                Purchase SOL and transfer it directly into your wallet.
+              </p>
+            </div>
+
+            <div class="step">
+              <span class="step-number">03</span>
+              <p>
+                <strong>Connect to a DEX.</strong>
+                Navigate to Pump.fun, Raydium, or Jupiter.
+              </p>
+            </div>
+
+            <div class="step">
+              <span class="step-number">04</span>
+              <p>
+                <strong>Swap for $UNC.</strong>
+                Enter the official verified contract address and swap.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- UNC MEME GENERATOR -->
+    <!-- ==================================================
+         BISON RUN GAME
+         unc_carl.png must be in the same GitHub folder.
+         ================================================== -->
+    <section class="section token-area" id="game">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Bison Run</span>
+
+            <h2 class="section-title">
+              Jump the <em>Bison.</em>
+            </h2>
+          </div>
+
+          <p class="section-text">
+            Play as UNC Carl. Press Space, click, or tap to jump over the
+            Bison icons. Every Bison you pass adds one point.
+          </p>
+        </div>
+
+        <div class="game-shell">
+          <div class="game-toolbar">
+            <div class="game-score-group">
+              <div class="game-score-box">
+                Score
+                <strong id="gameScore">0</strong>
+              </div>
+
+              <div class="game-score-box">
+                Best Score
+                <strong id="gameBestScore">0</strong>
+              </div>
+            </div>
+
+            <div class="game-status" id="gameStatus">
+              READY FOR TAKEOFF
+            </div>
+          </div>
+
+          <div class="game-canvas-wrap" id="gameCanvasWrap">
+            <canvas
+              id="uncGameCanvas"
+              width="960"
+              height="420"
+              tabindex="0"
+              aria-label="Bison Run game. Press Space, click, or tap to jump."
+            ></canvas>
+
+            <div class="game-overlay" id="gameOverlay">
+              <div class="game-overlay-card">
+                <span class="game-overlay-icon">
+                  <img
+                    src="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg"
+                    alt="Bison icon"
+                  />
+                </span>
+
+                <h3 id="gameOverlayTitle">
+                  Bison <span>Run</span>
+                </h3>
+
+                <p id="gameOverlayText">
+                  Help UNC Carl escape the herd. Jump over every Bison
+                  icon and score as many points as possible.
+                </p>
+
+                <button
+                  class="button button-primary"
+                  id="gameStartButton"
+                  type="button"
+                >Start Game</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="game-help">
+            <span><kbd>SPACE</kbd> Jump</span>
+            <span><kbd>CLICK</kbd> Jump</span>
+            <span><kbd>TAP</kbd> Jump</span>
+            <span>The game gets faster as your score increases.</span>
+          </div>
+
+          <p class="game-image-warning" id="gameImageWarning">
+            unc_carl.png could not be loaded. Make sure it is in the same
+            GitHub folder as this HTML file.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meme generator -->
     <section class="section" id="meme-lab">
       <div class="container">
         <div class="section-heading">
           <div>
             <span class="eyebrow">UNC Meme Lab</span>
-            <h2 class="section-title">Upload. Edit. <em>Fly.</em></h2>
+
+            <h2 class="section-title">
+              Upload. Edit. <em>Fly.</em>
+            </h2>
           </div>
-          <p class="section-text">Turn any image into a Flying UNC meme. Everything happens in your browser, so your image is never uploaded anywhere.</p>
+
+          <p class="section-text">
+            Turn any image into a Flying UNC meme. Everything happens in
+            your browser.
+          </p>
         </div>
 
         <div class="meme-generator">
@@ -1108,19 +2381,36 @@
                 <strong>✦ Upload an image</strong>
                 <span>PNG, JPG, GIF, or WEBP</span>
               </span>
-              <input type="file" id="memeImageInput" accept="image/*" />
+
+              <input
+                type="file"
+                id="memeImageInput"
+                accept="image/*"
+              />
             </label>
 
-            <div class="meme-file-name" id="memeFileName">No image selected</div>
+            <div class="meme-file-name" id="memeFileName">
+              No image selected
+            </div>
 
             <div class="meme-field">
               <label for="memeTopText">Top text</label>
-              <input type="text" id="memeTopText" maxlength="80" placeholder="WHEN THE BISON..." />
+              <input
+                type="text"
+                id="memeTopText"
+                maxlength="80"
+                placeholder="WHEN THE BISON..."
+              />
             </div>
 
             <div class="meme-field">
               <label for="memeBottomText">Bottom text</label>
-              <input type="text" id="memeBottomText" maxlength="80" placeholder="GETS ITS WINGS" />
+              <input
+                type="text"
+                id="memeBottomText"
+                maxlength="80"
+                placeholder="GETS ITS WINGS"
+              />
             </div>
 
             <div class="meme-field">
@@ -1128,7 +2418,14 @@
                 <label for="memeFontSize">Text size</label>
                 <output id="memeFontSizeValue">72px</output>
               </div>
-              <input type="range" id="memeFontSize" min="28" max="180" value="72" />
+
+              <input
+                type="range"
+                id="memeFontSize"
+                min="28"
+                max="180"
+                value="72"
+              />
             </div>
 
             <div class="meme-field">
@@ -1136,262 +2433,1084 @@
                 <label for="memeStrokeWidth">Outline width</label>
                 <output id="memeStrokeWidthValue">4px</output>
               </div>
-              <input type="range" id="memeStrokeWidth" min="1" max="12" value="4" />
+
+              <input
+                type="range"
+                id="memeStrokeWidth"
+                min="1"
+                max="12"
+                value="4"
+              />
             </div>
 
             <div class="meme-color-row">
               <label for="memeTextColor">
                 Text color
-                <input type="color" id="memeTextColor" value="#ffffff" />
+                <input
+                  type="color"
+                  id="memeTextColor"
+                  value="#ffffff"
+                />
               </label>
+
               <label for="memeStrokeColor">
                 Outline
-                <input type="color" id="memeStrokeColor" value="#05070a" />
+                <input
+                  type="color"
+                  id="memeStrokeColor"
+                  value="#05070a"
+                />
               </label>
             </div>
 
             <label class="meme-check">
               <input type="checkbox" id="memeStampToggle" />
-              <span>Add a $UNC watermark to the meme</span>
+              <span>Add a $UNC watermark</span>
             </label>
 
             <div class="meme-actions">
-              <button class="button button-primary" id="memeDownload" type="button" disabled>Download Meme ↧</button>
-              <button class="meme-reset" id="memeReset" type="button">Reset</button>
+              <button
+                class="button button-primary"
+                id="memeDownload"
+                type="button"
+                disabled
+              >Download Meme ↧</button>
+
+              <button
+                class="meme-reset"
+                id="memeReset"
+                type="button"
+              >Reset</button>
             </div>
 
-            <p class="meme-note">Tip: use short, bold text for the strongest meme impact. Your finished meme downloads as a PNG.</p>
+            <p class="meme-note">
+              Tip: use short, bold text for the strongest meme impact.
+            </p>
           </div>
 
           <div class="meme-preview" id="memePreview">
-            <canvas id="memeCanvas" aria-label="Generated UNC meme preview"></canvas>
-            <div class="meme-empty" id="memeEmptyState">
+            <canvas
+              id="memeCanvas"
+              aria-label="Generated UNC meme preview"
+            ></canvas>
+
+            <div class="meme-empty">
               <div class="meme-empty-icon">✦</div>
               <strong>Drop your image here</strong>
-              <span>Upload a photo, add your UNC text, and download your finished meme.</span>
+              <span>
+                Upload a photo, add your UNC text, and download your
+                finished meme.
+              </span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Socials -->
     <section class="section" id="socials">
       <div class="container">
         <div class="section-heading">
           <div>
             <span class="eyebrow">Join the Herd</span>
-            <h2 class="section-title">Find <em>$UNC</em> across the web.</h2>
+
+            <h2 class="section-title">
+              Find <em>$UNC</em> across the web.
+            </h2>
           </div>
-          <p class="section-text">Follow the flight across every major channel. Real herd energy lives on X and Telegram — don't get left on the runway.</p>
+
+          <p class="section-text">
+            Follow the flight across every major channel. Real herd
+            energy lives on X and Telegram.
+          </p>
         </div>
+
         <div class="socials-grid">
-          <!-- X -->
-          <a class="social-card" href="https://x.com/FlyingUncSolana" target="_blank" rel="noopener noreferrer" style="--accent: var(--yellow)">
-            <div class="social-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
+          <a
+            class="social-card"
+            href="https://x.com/FlyingUncSolana"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="social-icon">𝕏</div>
+            <div class="social-meta">
+              <h3>X / Twitter</h3>
+              <span>@FlyingUncSolana</span>
             </div>
-            <div class="social-meta"><h3>X / Twitter</h3><span>@FlyingUncSolana</span></div>
-            <span class="social-cta">Follow <span aria-hidden="true">↗</span></span>
+            <span class="social-cta">Follow ↗</span>
           </a>
 
-          <!-- X Community -->
-          <a class="social-card" href="https://twitter.com/i/communities/1953823134127100097" target="_blank" rel="noopener noreferrer" style="--accent: var(--orange)">
-            <div class="social-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
+          <a
+            class="social-card"
+            href="https://twitter.com/i/communities/1953823134127100097"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="social-icon">👥</div>
+            <div class="social-meta">
+              <h3>X Community</h3>
+              <span>Join the Herd</span>
             </div>
-            <div class="social-meta"><h3>X Community</h3><span>Join the Herd</span></div>
-            <span class="social-cta">Join <span aria-hidden="true">↗</span></span>
+            <span class="social-cta">Join ↗</span>
           </a>
 
-          <!-- Telegram -->
-          <a class="social-card" href="https://t.me/FLYINGUNCCTO" target="_blank" rel="noopener noreferrer" style="--accent: var(--blue)">
-            <div class="social-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
-                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-              </svg>
+          <a
+            class="social-card"
+            href="https://t.me/FLYINGUNCCTO"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="social-icon">✈</div>
+            <div class="social-meta">
+              <h3>Telegram</h3>
+              <span>t.me/FLYINGUNCCTO</span>
             </div>
-            <div class="social-meta"><h3>Telegram</h3><span>t.me/FLYINGUNCCTO</span></div>
-            <span class="social-cta">Join Chat <span aria-hidden="true">↗</span></span>
+            <span class="social-cta">Join Chat ↗</span>
           </a>
 
-          <!-- DexScreener -->
-          <a class="social-card" href="https://dexscreener.com/solana/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" style="--accent: var(--lime)">
-            <div class="social-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 3v18h18"/><path d="M7 15l4-6 3 4 5-8"/>
-              </svg>
+          <a
+            class="social-card"
+            href="https://dexscreener.com/solana/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="social-icon">📈</div>
+            <div class="social-meta">
+              <h3>DexScreener</h3>
+              <span>Live Chart</span>
             </div>
-            <div class="social-meta"><h3>DexScreener</h3><span>Live Chart</span></div>
-            <span class="social-cta">View Chart <span aria-hidden="true">↗</span></span>
+            <span class="social-cta">View ↗</span>
           </a>
 
-          <!-- Pump.fun -->
-          <a class="social-card" href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" style="--accent: var(--orange)">
-            <div class="social-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
-                <path d="M12 2C8 2 5 5 5 9c0 2 .8 3.8 2 5l-1 7 6-3 6 3-1-7c1.2-1.2 2-3 2-5 0-4-3-7-7-7zm0 4a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
-              </svg>
+          <a
+            class="social-card"
+            href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="social-icon">↗</div>
+            <div class="social-meta">
+              <h3>Pump.fun</h3>
+              <span>Buy $UNC</span>
             </div>
-            <div class="social-meta"><h3>Pump.fun</h3><span>Buy $UNC</span></div>
-            <span class="social-cta">Launch App <span aria-hidden="true">↗</span></span>
+            <span class="social-cta">Launch ↗</span>
           </a>
 
-          <!-- Solscan -->
-          <a class="social-card" href="https://solscan.io/token/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" style="--accent: #b580ff">
-            <div class="social-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>
-              </svg>
+          <a
+            class="social-card"
+            href="https://solscan.io/token/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="social-icon">🔍</div>
+            <div class="social-meta">
+              <h3>Solscan</h3>
+              <span>On-Chain Data</span>
             </div>
-            <div class="social-meta"><h3>Solscan</h3><span>On-Chain Data</span></div>
-            <span class="social-cta">Inspect <span aria-hidden="true">↗</span></span>
+            <span class="social-cta">Inspect ↗</span>
           </a>
         </div>
       </div>
     </section>
 
+    <!-- FAQ -->
     <section class="section" id="faq">
       <div class="container">
         <div style="text-align: center; margin-bottom: 50px;">
           <span class="eyebrow">Clear the Air</span>
-          <h2 class="section-title" style="margin: 10px auto; max-width: 600px;">Frequently Asked <em>Questions</em></h2>
+
+          <h2
+            class="section-title"
+            style="margin: 10px auto; max-width: 600px;"
+          >
+            Frequently Asked <em>Questions</em>
+          </h2>
         </div>
+
         <div class="faq-container">
           <div class="faq-item">
-            <button class="faq-trigger"><span>Why is the unc flying?</span><span class="faq-icon">+</span></button>
-            <div class="faq-content"><p>Because typical ground walking unc face boundaries. The Flying UNC transcends limits. It represents rising above standard market limitations with pure community momentum.</p></div>
+            <button class="faq-trigger" type="button">
+              <span>Why is the UNC flying?</span>
+              <span class="faq-icon">+</span>
+            </button>
+
+            <div class="faq-content">
+              <p>
+                Because typical ground-walking UNC faces boundaries. The
+                Flying UNC transcends limits with pure community momentum.
+              </p>
+            </div>
           </div>
+
           <div class="faq-item">
-            <button class="faq-trigger"><span>What is the strategy for the trend reversal?</span><span class="faq-icon">+</span></button>
-            <div class="faq-content"><p>Reversals are earned by building during quiet periods. We are actively expanding community operations, designing original branding resources, hosting public spaces, and generating relentless content so the momentum shifts systematically.</p></div>
+            <button class="faq-trigger" type="button">
+              <span>How do I play Bison Run?</span>
+              <span class="faq-icon">+</span>
+            </button>
+
+            <div class="faq-content">
+              <p>
+                Press Space, click, or tap to make UNC Carl jump. Avoid the
+                Bison icons. Every Bison you pass adds one point.
+              </p>
+            </div>
           </div>
+
           <div class="faq-item">
-            <button class="faq-trigger"><span>Is there a token utility plan?</span><span class="faq-icon">+</span></button>
-            <div class="faq-content"><p>$UNC is primarily launched as a culture-driven community meme coin designed for social amusement. The main utility lies in community mobilization, shared humor, and the spread of bison cultural memes across Web3 channels.</p></div>
+            <button class="faq-trigger" type="button">
+              <span>Is there a token utility plan?</span>
+              <span class="faq-icon">+</span>
+            </button>
+
+            <div class="faq-content">
+              <p>
+                $UNC is primarily a culture-driven community meme coin
+                designed for social amusement and shared humor.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-main">
-        <h2 class="footer-title">The herd has <span>wings.</span></h2>
+        <h2 class="footer-title">
+          The herd has <span>wings.</span>
+        </h2>
+
         <div class="socials">
-          <a href="https://x.com/FlyingUncSolana" target="_blank" rel="noopener noreferrer" aria-label="X Profile">𝕏</a>
-          <a href="https://twitter.com/i/communities/1953823134127100097" target="_blank" rel="noopener noreferrer" aria-label="X Community">👥</a>
-          <a href="https://t.me/FLYINGUNCCTO" target="_blank" rel="noopener noreferrer" aria-label="Telegram">✈</a>
-          <a href="https://dexscreener.com/solana/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" aria-label="DexScreener">📈</a>
-          <a href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" aria-label="Pump.fun">↗</a>
-          <a href="https://solscan.io/token/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" aria-label="Solscan">🔍</a>
+          <a
+            href="https://x.com/FlyingUncSolana"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X Profile"
+          >𝕏</a>
+
+          <a
+            href="https://twitter.com/i/communities/1953823134127100097"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X Community"
+          >👥</a>
+
+          <a
+            href="https://t.me/FLYINGUNCCTO"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Telegram"
+          >✈</a>
+
+          <a
+            href="https://dexscreener.com/solana/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="DexScreener"
+          >📈</a>
+
+          <a
+            href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Pump.fun"
+          >↗</a>
+
+          <a
+            href="https://solscan.io/token/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Solscan"
+          >🔍</a>
         </div>
       </div>
+
       <div class="footer-bottom">
-        <p>© 2026 The Flying UNC. Engineered for the community herd.</p>
-        <p>$UNC is a high-risk meme asset. Nothing contained on this webpage constitutes certified financial recommendation or guidance. Always execute appropriate personal research.</p>
+        <p>
+          © 2026 The Flying UNC. Engineered for the community herd.
+        </p>
+
+        <p>
+          $UNC is a high-risk meme asset. Nothing on this webpage
+          constitutes financial advice. Always perform your own research.
+        </p>
       </div>
     </div>
   </footer>
 
-  <div class="toast" id="toast">Contract address copied!</div>
-  
+  <div class="toast" id="toast">
+    Contract address copied!
+  </div>
+
   <script>
-    // ==========================================
-    // CUSTOM CURSOR JAVASCRIPT LOGIC
-    // ==========================================
-    const customCursor = document.getElementById('custom-cursor');
-    
-    // Only track mouse if device is not a touch device
-    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-      document.addEventListener('mousemove', (e) => {
-        customCursor.style.left = e.clientX + 'px';
-        customCursor.style.top = e.clientY + 'px';
+    /* ==================================================
+       CUSTOM CURSOR
+       ================================================== */
+    const customCursor = document.getElementById("custom-cursor");
+
+    if (
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches
+    ) {
+      document.addEventListener("mousemove", (event) => {
+        customCursor.style.left = event.clientX + "px";
+        customCursor.style.top = event.clientY + "px";
       });
     }
-    // ==========================================
 
-    // ==========================================
-    // UNC MEME GENERATOR
-    // ==========================================
-    const memeImageInput = document.getElementById("memeImageInput");
-    const memeFileName = document.getElementById("memeFileName");
-    const memeTopText = document.getElementById("memeTopText");
-    const memeBottomText = document.getElementById("memeBottomText");
-    const memeFontSize = document.getElementById("memeFontSize");
-    const memeFontSizeValue = document.getElementById("memeFontSizeValue");
-    const memeStrokeWidth = document.getElementById("memeStrokeWidth");
-    const memeStrokeWidthValue = document.getElementById("memeStrokeWidthValue");
-    const memeTextColor = document.getElementById("memeTextColor");
-    const memeStrokeColor = document.getElementById("memeStrokeColor");
-    const memeStampToggle = document.getElementById("memeStampToggle");
-    const memeDownload = document.getElementById("memeDownload");
-    const memeReset = document.getElementById("memeReset");
-    const memePreview = document.getElementById("memePreview");
-    const memeCanvas = document.getElementById("memeCanvas");
-    const memeCtx = memeCanvas.getContext("2d");
+    /* ==================================================
+       BISON RUN GAME
+       Main character: unc_carl.png
+       Obstacle: Bison image/icon
+       ================================================== */
+    const gameCanvas = document.getElementById("uncGameCanvas");
+    const gameContext = gameCanvas.getContext("2d");
+
+    const gameOverlay = document.getElementById("gameOverlay");
+    const gameOverlayTitle = document.getElementById("gameOverlayTitle");
+    const gameOverlayText = document.getElementById("gameOverlayText");
+    const gameStartButton = document.getElementById("gameStartButton");
+
+    const gameScoreElement = document.getElementById("gameScore");
+    const gameBestScoreElement =
+      document.getElementById("gameBestScore");
+
+    const gameStatusElement = document.getElementById("gameStatus");
+    const gameImageWarning =
+      document.getElementById("gameImageWarning");
+
+    const UNC_CHARACTER_IMAGE = "unc_carl.png";
+
+    const BISON_IMAGE =
+      "https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg";
+
+    const uncCharacterImage = new Image();
+    uncCharacterImage.src = UNC_CHARACTER_IMAGE;
+
+    const bisonGameImage = new Image();
+    bisonGameImage.src = BISON_IMAGE;
+
+    let uncImageLoaded = false;
+    let bisonImageLoaded = false;
+
+    uncCharacterImage.onload = () => {
+      uncImageLoaded = true;
+      gameImageWarning.classList.remove("show");
+      drawGameScene();
+    };
+
+    uncCharacterImage.onerror = () => {
+      uncImageLoaded = false;
+      gameImageWarning.classList.add("show");
+      drawGameScene();
+    };
+
+    bisonGameImage.onload = () => {
+      bisonImageLoaded = true;
+      drawGameScene();
+    };
+
+    bisonGameImage.onerror = () => {
+      bisonImageLoaded = false;
+      drawGameScene();
+    };
+
+    const gameGroundY = 350;
+
+    const gamePlayer = {
+      x: 115,
+      y: 0,
+      width: 76,
+      height: 76,
+      velocityY: 0,
+      rotation: 0,
+      onGround: true
+    };
+
+    let gameObstacles = [];
+    let gameParticles = [];
+
+    let gameRunning = false;
+    let gameOver = false;
+    let gameScore = 0;
+    let gameBestScore = 0;
+
+    let gameSpeed = 6.2;
+    let gameSpawnTimer = 0;
+    let gameNextSpawn = 95;
+
+    let gameAnimationFrame = null;
+    let gameLastTime = 0;
+    let gameBackgroundOffset = 0;
+
+    try {
+      gameBestScore =
+        Number(localStorage.getItem("uncBisonRunBest")) || 0;
+    } catch (error) {
+      gameBestScore = 0;
+    }
+
+    gameBestScoreElement.textContent = gameBestScore;
+
+    function resetPlayerPosition() {
+      gamePlayer.y = gameGroundY - gamePlayer.height;
+      gamePlayer.velocityY = 0;
+      gamePlayer.rotation = 0;
+      gamePlayer.onGround = true;
+    }
+
+    function startBisonGame() {
+      gameRunning = true;
+      gameOver = false;
+      gameScore = 0;
+      gameSpeed = 6.2;
+      gameSpawnTimer = 0;
+      gameNextSpawn = 95;
+      gameBackgroundOffset = 0;
+
+      gameObstacles = [];
+      gameParticles = [];
+
+      resetPlayerPosition();
+
+      gameScoreElement.textContent = "0";
+      gameStatusElement.textContent = "RUNNING FROM THE HERD";
+      gameOverlay.classList.add("hidden");
+
+      gameCanvas.focus();
+
+      cancelAnimationFrame(gameAnimationFrame);
+      gameLastTime = performance.now();
+
+      gameAnimationFrame =
+        requestAnimationFrame(updateBisonGame);
+    }
+
+    function endBisonGame() {
+      gameRunning = false;
+      gameOver = true;
+
+      if (gameScore > gameBestScore) {
+        gameBestScore = gameScore;
+        gameBestScoreElement.textContent = gameBestScore;
+
+        try {
+          localStorage.setItem(
+            "uncBisonRunBest",
+            String(gameBestScore)
+          );
+        } catch (error) {
+          /* Local storage may be unavailable. */
+        }
+      }
+
+      gameStatusElement.textContent = "THE BISON CAUGHT UNC";
+
+      gameOverlayTitle.innerHTML =
+        'Game <span>Over</span>';
+
+      gameOverlayText.textContent =
+        "You scored " +
+        gameScore +
+        " point" +
+        (gameScore === 1 ? "" : "s") +
+        ". Jump back in and beat your best score.";
+
+      gameStartButton.textContent = "Run Again";
+      gameOverlay.classList.remove("hidden");
+    }
+
+    function jumpGamePlayer() {
+      if (!gameRunning) {
+        startBisonGame();
+        return;
+      }
+
+      if (gamePlayer.onGround) {
+        gamePlayer.velocityY = -15.5;
+        gamePlayer.onGround = false;
+
+        for (let index = 0; index < 7; index += 1) {
+          gameParticles.push({
+            x: gamePlayer.x + gamePlayer.width / 2,
+            y: gameGroundY - 5,
+            vx: -Math.random() * 3 - 1,
+            vy: -Math.random() * 3,
+            size: Math.random() * 4 + 2,
+            life: 25
+          });
+        }
+      }
+    }
+
+    function createBisonObstacle() {
+      const size = 66 + Math.random() * 15;
+
+      gameObstacles.push({
+        x: gameCanvas.width + size,
+        y: gameGroundY - size,
+        width: size,
+        height: size,
+        passed: false
+      });
+
+      gameNextSpawn =
+        Math.max(65, 105 - gameScore * 1.1) +
+        Math.floor(Math.random() * 35);
+    }
+
+    function rectanglesCollide(first, second) {
+      const firstPaddingX = 15;
+      const firstPaddingY = 10;
+      const secondPadding = 10;
+
+      return (
+        first.x + firstPaddingX <
+          second.x + second.width - secondPadding &&
+        first.x + first.width - firstPaddingX >
+          second.x + secondPadding &&
+        first.y + firstPaddingY <
+          second.y + second.height - secondPadding &&
+        first.y + first.height - firstPaddingY >
+          second.y + secondPadding
+      );
+    }
+
+    function updateBisonGame(currentTime) {
+      if (!gameRunning) {
+        return;
+      }
+
+      const elapsed = Math.min(
+        2,
+        Math.max(0.4, (currentTime - gameLastTime) / 16.6667)
+      );
+
+      gameLastTime = currentTime;
+
+      gamePlayer.velocityY += 0.82 * elapsed;
+      gamePlayer.y += gamePlayer.velocityY * elapsed;
+
+      if (gamePlayer.y + gamePlayer.height >= gameGroundY) {
+        gamePlayer.y = gameGroundY - gamePlayer.height;
+        gamePlayer.velocityY = 0;
+        gamePlayer.rotation = 0;
+        gamePlayer.onGround = true;
+      } else {
+        gamePlayer.rotation =
+          Math.max(
+            -0.22,
+            Math.min(0.3, gamePlayer.velocityY * 0.018)
+          );
+      }
+
+      gameSpawnTimer += elapsed;
+
+      if (gameSpawnTimer >= gameNextSpawn) {
+        createBisonObstacle();
+        gameSpawnTimer = 0;
+      }
+
+      gameSpeed =
+        Math.min(13, 6.2 + gameScore * 0.18);
+
+      for (
+        let index = gameObstacles.length - 1;
+        index >= 0;
+        index -= 1
+      ) {
+        const obstacle = gameObstacles[index];
+
+        obstacle.x -= gameSpeed * elapsed;
+
+        if (
+          !obstacle.passed &&
+          obstacle.x + obstacle.width < gamePlayer.x
+        ) {
+          obstacle.passed = true;
+          gameScore += 1;
+          gameScoreElement.textContent = gameScore;
+        }
+
+        if (rectanglesCollide(gamePlayer, obstacle)) {
+          endBisonGame();
+          drawGameScene();
+          return;
+        }
+
+        if (obstacle.x + obstacle.width < -30) {
+          gameObstacles.splice(index, 1);
+        }
+      }
+
+      for (
+        let index = gameParticles.length - 1;
+        index >= 0;
+        index -= 1
+      ) {
+        const particle = gameParticles[index];
+
+        particle.x += particle.vx * elapsed;
+        particle.y += particle.vy * elapsed;
+        particle.vy += 0.15 * elapsed;
+        particle.life -= elapsed;
+
+        if (particle.life <= 0) {
+          gameParticles.splice(index, 1);
+        }
+      }
+
+      gameBackgroundOffset += gameSpeed * 0.3 * elapsed;
+
+      drawGameScene();
+
+      gameAnimationFrame =
+        requestAnimationFrame(updateBisonGame);
+    }
+
+    function drawCoverImage(
+      context,
+      image,
+      x,
+      y,
+      width,
+      height
+    ) {
+      const sourceWidth = image.naturalWidth || image.width;
+      const sourceHeight = image.naturalHeight || image.height;
+
+      if (!sourceWidth || !sourceHeight) {
+        return;
+      }
+
+      const sourceRatio = sourceWidth / sourceHeight;
+      const targetRatio = width / height;
+
+      let sourceX = 0;
+      let sourceY = 0;
+      let cropWidth = sourceWidth;
+      let cropHeight = sourceHeight;
+
+      if (sourceRatio > targetRatio) {
+        cropWidth = sourceHeight * targetRatio;
+        sourceX = (sourceWidth - cropWidth) / 2;
+      } else {
+        cropHeight = sourceWidth / targetRatio;
+        sourceY = (sourceHeight - cropHeight) / 2;
+      }
+
+      context.drawImage(
+        image,
+        sourceX,
+        sourceY,
+        cropWidth,
+        cropHeight,
+        x,
+        y,
+        width,
+        height
+      );
+    }
+
+    function drawBisonIcon(obstacle) {
+      const centerX = obstacle.x + obstacle.width / 2;
+      const centerY = obstacle.y + obstacle.height / 2;
+      const radius = obstacle.width / 2;
+
+      gameContext.save();
+
+      gameContext.shadowColor = "rgba(255, 90, 31, 0.5)";
+      gameContext.shadowBlur = 16;
+
+      gameContext.beginPath();
+      gameContext.arc(
+        centerX,
+        centerY,
+        radius,
+        0,
+        Math.PI * 2
+      );
+
+      gameContext.clip();
+
+      if (bisonImageLoaded) {
+        drawCoverImage(
+          gameContext,
+          bisonGameImage,
+          obstacle.x,
+          obstacle.y,
+          obstacle.width,
+          obstacle.height
+        );
+      } else {
+        gameContext.fillStyle = "#8a542f";
+        gameContext.fill();
+
+        gameContext.font =
+          Math.round(obstacle.width * 0.6) + "px Arial";
+
+        gameContext.textAlign = "center";
+        gameContext.textBaseline = "middle";
+        gameContext.fillStyle = "#ffffff";
+
+        gameContext.fillText(
+          "🦬",
+          centerX,
+          centerY + 2
+        );
+      }
+
+      gameContext.restore();
+
+      gameContext.save();
+
+      gameContext.beginPath();
+      gameContext.arc(
+        centerX,
+        centerY,
+        radius - 2,
+        0,
+        Math.PI * 2
+      );
+
+      gameContext.lineWidth = 4;
+      gameContext.strokeStyle = "#ff5a1f";
+      gameContext.stroke();
+
+      gameContext.restore();
+    }
+
+    function drawGamePlayer() {
+      gameContext.save();
+
+      gameContext.translate(
+        gamePlayer.x + gamePlayer.width / 2,
+        gamePlayer.y + gamePlayer.height / 2
+      );
+
+      gameContext.rotate(gamePlayer.rotation);
+
+      gameContext.shadowColor = "rgba(255, 197, 41, 0.4)";
+      gameContext.shadowBlur = 18;
+
+      if (uncImageLoaded) {
+        gameContext.drawImage(
+          uncCharacterImage,
+          -gamePlayer.width / 2,
+          -gamePlayer.height / 2,
+          gamePlayer.width,
+          gamePlayer.height
+        );
+      } else {
+        gameContext.fillStyle = "#ffc529";
+        gameContext.beginPath();
+        gameContext.arc(
+          0,
+          0,
+          gamePlayer.width / 2,
+          0,
+          Math.PI * 2
+        );
+        gameContext.fill();
+
+        gameContext.fillStyle = "#05070a";
+        gameContext.font = '900 19px "Arial Black", Arial';
+        gameContext.textAlign = "center";
+        gameContext.textBaseline = "middle";
+        gameContext.fillText("$UNC", 0, 1);
+      }
+
+      gameContext.restore();
+    }
+
+    function drawGameBackground() {
+      const gradient = gameContext.createLinearGradient(
+        0,
+        0,
+        0,
+        gameCanvas.height
+      );
+
+      gradient.addColorStop(0, "#101824");
+      gradient.addColorStop(0.65, "#080b11");
+      gradient.addColorStop(1, "#05070a");
+
+      gameContext.fillStyle = gradient;
+      gameContext.fillRect(
+        0,
+        0,
+        gameCanvas.width,
+        gameCanvas.height
+      );
+
+      const glow = gameContext.createRadialGradient(
+        gameCanvas.width * 0.76,
+        70,
+        10,
+        gameCanvas.width * 0.76,
+        70,
+        210
+      );
+
+      glow.addColorStop(0, "rgba(255, 197, 41, 0.18)");
+      glow.addColorStop(1, "rgba(255, 197, 41, 0)");
+
+      gameContext.fillStyle = glow;
+      gameContext.fillRect(
+        0,
+        0,
+        gameCanvas.width,
+        gameCanvas.height
+      );
+
+      gameContext.strokeStyle =
+        "rgba(255, 255, 255, 0.035)";
+
+      gameContext.lineWidth = 1;
+
+      const gridSize = 48;
+      const offset =
+        -(gameBackgroundOffset % gridSize);
+
+      for (
+        let x = offset;
+        x < gameCanvas.width;
+        x += gridSize
+      ) {
+        gameContext.beginPath();
+        gameContext.moveTo(x, 0);
+        gameContext.lineTo(x, gameGroundY);
+        gameContext.stroke();
+      }
+
+      for (
+        let y = 30;
+        y < gameGroundY;
+        y += gridSize
+      ) {
+        gameContext.beginPath();
+        gameContext.moveTo(0, y);
+        gameContext.lineTo(gameCanvas.width, y);
+        gameContext.stroke();
+      }
+
+      gameContext.fillStyle =
+        "rgba(255, 197, 41, 0.06)";
+
+      for (let index = 0; index < 12; index += 1) {
+        const starX =
+          (index * 139 - gameBackgroundOffset * 0.2) %
+          (gameCanvas.width + 100);
+
+        const fixedStarX =
+          starX < 0 ? starX + gameCanvas.width + 100 : starX;
+
+        const starY = 45 + (index * 47) % 190;
+
+        gameContext.fillRect(
+          fixedStarX,
+          starY,
+          2,
+          2
+        );
+      }
+
+      gameContext.fillStyle = "#111722";
+      gameContext.fillRect(
+        0,
+        gameGroundY,
+        gameCanvas.width,
+        gameCanvas.height - gameGroundY
+      );
+
+      gameContext.fillStyle = "#ffc529";
+      gameContext.fillRect(
+        0,
+        gameGroundY,
+        gameCanvas.width,
+        4
+      );
+
+      gameContext.fillStyle =
+        "rgba(255, 255, 255, 0.04)";
+
+      const stripeWidth = 80;
+      const stripeOffset =
+        -(gameBackgroundOffset * 2 % stripeWidth);
+
+      for (
+        let x = stripeOffset;
+        x < gameCanvas.width;
+        x += stripeWidth
+      ) {
+        gameContext.beginPath();
+        gameContext.moveTo(x, gameGroundY + 18);
+        gameContext.lineTo(x + 32, gameGroundY + 18);
+        gameContext.lineTo(x + 48, gameCanvas.height);
+        gameContext.lineTo(x + 16, gameCanvas.height);
+        gameContext.closePath();
+        gameContext.fill();
+      }
+    }
+
+    function drawGameScene() {
+      drawGameBackground();
+
+      for (const particle of gameParticles) {
+        gameContext.save();
+
+        gameContext.globalAlpha =
+          Math.max(0, particle.life / 25);
+
+        gameContext.fillStyle = "#ffc529";
+
+        gameContext.beginPath();
+        gameContext.arc(
+          particle.x,
+          particle.y,
+          particle.size,
+          0,
+          Math.PI * 2
+        );
+
+        gameContext.fill();
+        gameContext.restore();
+      }
+
+      for (const obstacle of gameObstacles) {
+        drawBisonIcon(obstacle);
+      }
+
+      drawGamePlayer();
+    }
+
+    gameStartButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      startBisonGame();
+    });
+
+    gameCanvas.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      jumpGamePlayer();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      const activeTag =
+        document.activeElement?.tagName?.toLowerCase();
+
+      const typing =
+        activeTag === "input" ||
+        activeTag === "textarea" ||
+        activeTag === "select";
+
+      if (typing) {
+        return;
+      }
+
+      if (
+        event.code === "Space" &&
+        (
+          gameRunning ||
+          document.activeElement === gameCanvas
+        )
+      ) {
+        event.preventDefault();
+        jumpGamePlayer();
+      }
+    });
+
+    resetPlayerPosition();
+    drawGameScene();
+
+    /* ==================================================
+       MEME GENERATOR
+       ================================================== */
+    const memeImageInput =
+      document.getElementById("memeImageInput");
+
+    const memeFileName =
+      document.getElementById("memeFileName");
+
+    const memeTopText =
+      document.getElementById("memeTopText");
+
+    const memeBottomText =
+      document.getElementById("memeBottomText");
+
+    const memeFontSize =
+      document.getElementById("memeFontSize");
+
+    const memeFontSizeValue =
+      document.getElementById("memeFontSizeValue");
+
+    const memeStrokeWidth =
+      document.getElementById("memeStrokeWidth");
+
+    const memeStrokeWidthValue =
+      document.getElementById("memeStrokeWidthValue");
+
+    const memeTextColor =
+      document.getElementById("memeTextColor");
+
+    const memeStrokeColor =
+      document.getElementById("memeStrokeColor");
+
+    const memeStampToggle =
+      document.getElementById("memeStampToggle");
+
+    const memeDownload =
+      document.getElementById("memeDownload");
+
+    const memeReset =
+      document.getElementById("memeReset");
+
+    const memePreview =
+      document.getElementById("memePreview");
+
+    const memeCanvas =
+      document.getElementById("memeCanvas");
+
+    const memeContext =
+      memeCanvas.getContext("2d");
 
     let uploadedMemeImage = null;
 
-    function updateMemeRangeLabels() {
-      memeFontSizeValue.textContent = `${memeFontSize.value}px`;
-      memeStrokeWidthValue.textContent = `${memeStrokeWidth.value}px`;
+    function updateMemeLabels() {
+      memeFontSizeValue.textContent =
+        memeFontSize.value + "px";
+
+      memeStrokeWidthValue.textContent =
+        memeStrokeWidth.value + "px";
     }
 
     function wrapMemeText(text, maxWidth) {
-      const words = text.trim().toUpperCase().split(/\s+/).filter(Boolean);
+      const words =
+        text.trim().toUpperCase().split(/\s+/).filter(Boolean);
+
       const lines = [];
       let currentLine = "";
 
-      words.forEach((word) => {
-        const testLine = currentLine ? `${currentLine} ${word}` : word;
+      for (const word of words) {
+        const testLine =
+          currentLine ? currentLine + " " + word : word;
 
-        if (memeCtx.measureText(testLine).width <= maxWidth || !currentLine) {
+        if (
+          memeContext.measureText(testLine).width <= maxWidth ||
+          !currentLine
+        ) {
           currentLine = testLine;
         } else {
           lines.push(currentLine);
           currentLine = word;
         }
-      });
+      }
 
       if (currentLine) {
         lines.push(currentLine);
       }
 
       return lines;
-    }
-
-    function drawMemeStamp() {
-      const stampWidth = Math.min(memeCanvas.width * 0.3, 250);
-      const stampHeight = stampWidth * 0.29;
-      const padding = Math.max(14, memeCanvas.width * 0.025);
-      const x = padding;
-      const y = memeCanvas.height - stampHeight - padding;
-
-      memeCtx.save();
-      memeCtx.fillStyle = "rgba(255, 197, 41, 0.95)";
-      memeCtx.strokeStyle = "#05070a";
-      memeCtx.lineWidth = Math.max(2, memeCanvas.width / 450);
-
-      memeCtx.beginPath();
-      memeCtx.roundRect(x, y, stampWidth, stampHeight, stampHeight * 0.22);
-      memeCtx.fill();
-      memeCtx.stroke();
-
-      memeCtx.fillStyle = "#05070a";
-      memeCtx.font = `900 ${Math.max(14, stampHeight * 0.34)}px "Archivo Black", Arial, sans-serif`;
-      memeCtx.textAlign = "left";
-      memeCtx.textBaseline = "middle";
-      memeCtx.fillText("$UNC", x + stampWidth * 0.08, y + stampHeight * 0.43);
-
-      memeCtx.font = `700 ${Math.max(7, stampHeight * 0.16)}px "DM Mono", monospace`;
-      memeCtx.fillText("THE FLYING UNC", x + stampWidth * 0.08, y + stampHeight * 0.75);
-      memeCtx.restore();
     }
 
     function drawMemeText(rawText, position) {
@@ -1401,43 +3520,123 @@
         return;
       }
 
-      const requestedFontSize = Number(memeFontSize.value);
       const fontSize = Math.max(
         18,
-        Math.min(requestedFontSize, memeCanvas.width * 0.14)
+        Math.min(
+          Number(memeFontSize.value),
+          memeCanvas.width * 0.14
+        )
       );
-      const sidePadding = Math.max(20, memeCanvas.width * 0.055);
-      const maxTextWidth = memeCanvas.width - sidePadding * 2;
+
+      const padding =
+        Math.max(20, memeCanvas.width * 0.055);
+
+      const maxWidth =
+        memeCanvas.width - padding * 2;
+
       const lineHeight = fontSize * 1.05;
-      const scale = Math.max(0.7, memeCanvas.width / 900);
-      const outlineWidth = Math.max(1, Number(memeStrokeWidth.value) * scale);
 
-      memeCtx.save();
-      memeCtx.font = `900 ${fontSize}px Impact, "Arial Black", sans-serif`;
-      memeCtx.textAlign = "center";
-      memeCtx.textBaseline = "alphabetic";
-      memeCtx.lineJoin = "round";
-      memeCtx.lineWidth = outlineWidth;
-      memeCtx.strokeStyle = memeStrokeColor.value;
-      memeCtx.fillStyle = memeTextColor.value;
+      memeContext.save();
 
-      const lines = wrapMemeText(text, maxTextWidth);
-      const totalBlockHeight = (lines.length - 1) * lineHeight;
-      let firstBaseline;
+      memeContext.font =
+        `900 ${fontSize}px Impact, "Arial Black", sans-serif`;
 
-      if (position === "top") {
-        firstBaseline = sidePadding + fontSize;
-      } else {
-        firstBaseline = memeCanvas.height - sidePadding - totalBlockHeight;
-      }
+      memeContext.textAlign = "center";
+      memeContext.textBaseline = "alphabetic";
+      memeContext.lineJoin = "round";
+
+      memeContext.lineWidth =
+        Math.max(
+          1,
+          Number(memeStrokeWidth.value) *
+            Math.max(0.7, memeCanvas.width / 900)
+        );
+
+      memeContext.strokeStyle = memeStrokeColor.value;
+      memeContext.fillStyle = memeTextColor.value;
+
+      const lines = wrapMemeText(text, maxWidth);
+
+      const totalHeight =
+        (lines.length - 1) * lineHeight;
+
+      const firstBaseline =
+        position === "top"
+          ? padding + fontSize
+          : memeCanvas.height - padding - totalHeight;
 
       lines.forEach((line, index) => {
-        const baseline = firstBaseline + index * lineHeight;
-        memeCtx.strokeText(line, memeCanvas.width / 2, baseline, maxTextWidth);
-        memeCtx.fillText(line, memeCanvas.width / 2, baseline, maxTextWidth);
+        const baseline =
+          firstBaseline + index * lineHeight;
+
+        memeContext.strokeText(
+          line,
+          memeCanvas.width / 2,
+          baseline,
+          maxWidth
+        );
+
+        memeContext.fillText(
+          line,
+          memeCanvas.width / 2,
+          baseline,
+          maxWidth
+        );
       });
 
-      memeCtx.restore();
+      memeContext.restore();
+    }
+
+    function drawMemeStamp() {
+      const stampWidth =
+        Math.min(memeCanvas.width * 0.3, 250);
+
+      const stampHeight =
+        stampWidth * 0.29;
+
+      const padding =
+        Math.max(14, memeCanvas.width * 0.025);
+
+      const x = padding;
+      const y =
+        memeCanvas.height - stampHeight - padding;
+
+      memeContext.save();
+
+      memeContext.fillStyle =
+        "rgba(255, 197, 41, 0.95)";
+
+      memeContext.fillRect(
+        x,
+        y,
+        stampWidth,
+        stampHeight
+      );
+
+      memeContext.fillStyle = "#05070a";
+
+      memeContext.font =
+        `900 ${Math.max(14, stampHeight * 0.34)}px "Arial Black", Arial`;
+
+      memeContext.textAlign = "left";
+      memeContext.textBaseline = "middle";
+
+      memeContext.fillText(
+        "$UNC",
+        x + stampWidth * 0.08,
+        y + stampHeight * 0.43
+      );
+
+      memeContext.font =
+        `700 ${Math.max(7, stampHeight * 0.16)}px monospace`;
+
+      memeContext.fillText(
+        "THE FLYING UNC",
+        x + stampWidth * 0.08,
+        y + stampHeight * 0.75
+      );
+
+      memeContext.restore();
     }
 
     function drawMeme() {
@@ -1445,16 +3644,39 @@
         return;
       }
 
-      const sourceWidth = uploadedMemeImage.naturalWidth || uploadedMemeImage.width;
-      const sourceHeight = uploadedMemeImage.naturalHeight || uploadedMemeImage.height;
+      const sourceWidth =
+        uploadedMemeImage.naturalWidth;
+
+      const sourceHeight =
+        uploadedMemeImage.naturalHeight;
+
       const maxDimension = 1400;
-      const resizeRatio = Math.min(1, maxDimension / Math.max(sourceWidth, sourceHeight));
 
-      memeCanvas.width = Math.max(1, Math.round(sourceWidth * resizeRatio));
-      memeCanvas.height = Math.max(1, Math.round(sourceHeight * resizeRatio));
+      const ratio = Math.min(
+        1,
+        maxDimension / Math.max(sourceWidth, sourceHeight)
+      );
 
-      memeCtx.clearRect(0, 0, memeCanvas.width, memeCanvas.height);
-      memeCtx.drawImage(uploadedMemeImage, 0, 0, memeCanvas.width, memeCanvas.height);
+      memeCanvas.width =
+        Math.round(sourceWidth * ratio);
+
+      memeCanvas.height =
+        Math.round(sourceHeight * ratio);
+
+      memeContext.clearRect(
+        0,
+        0,
+        memeCanvas.width,
+        memeCanvas.height
+      );
+
+      memeContext.drawImage(
+        uploadedMemeImage,
+        0,
+        0,
+        memeCanvas.width,
+        memeCanvas.height
+      );
 
       if (memeStampToggle.checked) {
         drawMemeStamp();
@@ -1468,12 +3690,7 @@
     }
 
     function loadMemeImage(file) {
-      if (!file) {
-        return;
-      }
-
-      if (!file.type.startsWith("image/")) {
-        memeFileName.textContent = "Please select a valid image file.";
+      if (!file || !file.type.startsWith("image/")) {
         return;
       }
 
@@ -1486,10 +3703,6 @@
           uploadedMemeImage = image;
           memeFileName.textContent = file.name;
           drawMeme();
-        };
-
-        image.onerror = () => {
-          memeFileName.textContent = "Unable to load this image.";
         };
 
         image.src = event.target.result;
@@ -1512,12 +3725,12 @@
       memeStampToggle
     ].forEach((control) => {
       control.addEventListener("input", () => {
-        updateMemeRangeLabels();
+        updateMemeLabels();
         drawMeme();
       });
 
       control.addEventListener("change", () => {
-        updateMemeRangeLabels();
+        updateMemeLabels();
         drawMeme();
       });
     });
@@ -1537,8 +3750,7 @@
     });
 
     memePreview.addEventListener("drop", (event) => {
-      const file = event.dataTransfer.files[0];
-      loadMemeImage(file);
+      loadMemeImage(event.dataTransfer.files[0]);
     });
 
     memePreview.addEventListener("click", () => {
@@ -1557,25 +3769,19 @@
           return;
         }
 
-        const downloadUrl = URL.createObjectURL(blob);
-        const downloadLink = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
 
-        downloadLink.href = downloadUrl;
-        downloadLink.download = "unc-meme.png";
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        downloadLink.remove();
+        link.href = url;
+        link.download = "unc-meme.png";
+
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
 
         setTimeout(() => {
-          URL.revokeObjectURL(downloadUrl);
+          URL.revokeObjectURL(url);
         }, 1000);
-
-        const originalText = memeDownload.textContent;
-        memeDownload.textContent = "Downloaded ✓";
-
-        setTimeout(() => {
-          memeDownload.textContent = originalText;
-        }, 1600);
       }, "image/png");
     });
 
@@ -1590,103 +3796,150 @@
       memeTextColor.value = "#ffffff";
       memeStrokeColor.value = "#05070a";
       memeStampToggle.checked = false;
-      memeCanvas.width = 900;
-      memeCanvas.height = 600;
-      memeCtx.clearRect(0, 0, memeCanvas.width, memeCanvas.height);
+
+      memeContext.clearRect(
+        0,
+        0,
+        memeCanvas.width,
+        memeCanvas.height
+      );
+
       memePreview.classList.remove("has-image");
       memeDownload.disabled = true;
-      updateMemeRangeLabels();
+
+      updateMemeLabels();
     });
 
-    updateMemeRangeLabels();
+    updateMemeLabels();
 
-    // ==========================================
-    // ORIGINAL SITE JAVASCRIPT
-    // ==========================================
+    /* ==================================================
+       ORIGINAL SITE JAVASCRIPT
+       ================================================== */
+    const CONTRACT_ADDRESS =
+      "6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump";
 
-    const CA = "6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump";
-    const navWrap = document.getElementById("navWrap");
-    const navLinks = document.getElementById("navLinks");
-    const menuButton = document.getElementById("menuButton");
-    const toast = document.getElementById("toast");
-    const chartToggleBtn = document.getElementById("chartToggleBtn");
-    const chartIframeWrapper = document.getElementById("chartIframeWrapper");
+    const navWrap =
+      document.getElementById("navWrap");
 
-    // Sticky nav
+    const navLinks =
+      document.getElementById("navLinks");
+
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const toast =
+      document.getElementById("toast");
+
+    const chartToggleButton =
+      document.getElementById("chartToggleBtn");
+
+    const chartIframeWrapper =
+      document.getElementById("chartIframeWrapper");
+
     window.addEventListener("scroll", () => {
-      navWrap.classList.toggle("scrolled", window.scrollY > 20);
+      navWrap.classList.toggle(
+        "scrolled",
+        window.scrollY > 20
+      );
     });
 
-    // Mobile menu
     menuButton.addEventListener("click", () => {
       navLinks.classList.toggle("mobile-open");
-      menuButton.textContent = navLinks.classList.contains("mobile-open") ? "×" : "☰";
+
+      menuButton.textContent =
+        navLinks.classList.contains("mobile-open")
+          ? "×"
+          : "☰";
     });
 
-    document.querySelectorAll(".nav-links a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("mobile-open");
-        menuButton.textContent = "☰";
+    document
+      .querySelectorAll(".nav-links a")
+      .forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("mobile-open");
+          menuButton.textContent = "☰";
+        });
       });
-    });
 
-    // Chart toggle (lazy load iframe only when open)
     let chartLoaded = false;
 
-    chartToggleBtn.addEventListener("click", () => {
-      const willShow = !chartIframeWrapper.classList.contains("show");
+    chartToggleButton.addEventListener("click", () => {
+      const willShow =
+        !chartIframeWrapper.classList.contains("show");
 
       if (willShow && !chartLoaded) {
         const iframe = document.createElement("iframe");
-        iframe.src = "https://dexscreener.com/solana/" + CA + "?embed=1&theme=dark";
+
+        iframe.src =
+          "https://dexscreener.com/solana/" +
+          CONTRACT_ADDRESS +
+          "?embed=1&theme=dark";
+
         iframe.setAttribute("allow", "clipboard-write");
         iframe.setAttribute("loading", "lazy");
         iframe.title = "$UNC Live Chart";
+
         chartIframeWrapper.appendChild(iframe);
         chartLoaded = true;
       }
 
-      chartIframeWrapper.classList.toggle("show", willShow);
-      chartToggleBtn.textContent = willShow ? "📊 Close Live Chart" : "📊 Toggle Live Chart";
+      chartIframeWrapper.classList.toggle(
+        "show",
+        willShow
+      );
+
+      chartToggleButton.textContent =
+        willShow
+          ? "📊 Close Live Chart"
+          : "📊 Toggle Live Chart";
     });
 
-    // Copy-to-clipboard + toast
-    document.querySelectorAll("[data-copy]").forEach((button) => {
-      button.addEventListener("click", async () => {
-        const address = button.dataset.copy;
+    document
+      .querySelectorAll("[data-copy]")
+      .forEach((button) => {
+        button.addEventListener("click", async () => {
+          const address = button.dataset.copy;
 
-        try {
-          await navigator.clipboard.writeText(address);
-        } catch {
-          const ta = document.createElement("textarea");
-          ta.value = address;
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand("copy");
-          ta.remove();
-        }
+          try {
+            await navigator.clipboard.writeText(address);
+          } catch (error) {
+            const textarea =
+              document.createElement("textarea");
 
-        const oldText = button.textContent;
-        button.textContent = "COPIED!";
-        toast.classList.add("show");
+            textarea.value = address;
 
-        setTimeout(() => {
-          button.textContent = oldText;
-          toast.classList.remove("show");
-        }, 1800);
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            textarea.remove();
+          }
+
+          const originalText = button.textContent;
+
+          button.textContent = "COPIED!";
+          toast.classList.add("show");
+
+          setTimeout(() => {
+            button.textContent = originalText;
+            toast.classList.remove("show");
+          }, 1800);
+        });
       });
-    });
 
-    // FAQ accordion
-    const faqItems = document.querySelectorAll(".faq-item");
+    const faqItems =
+      document.querySelectorAll(".faq-item");
 
     faqItems.forEach((item) => {
-      const trigger = item.querySelector(".faq-trigger");
+      const trigger =
+        item.querySelector(".faq-trigger");
 
       trigger.addEventListener("click", () => {
-        const isActive = item.classList.contains("active");
+        const isActive =
+          item.classList.contains("active");
 
-        faqItems.forEach((i) => i.classList.remove("active"));
+        faqItems.forEach((faqItem) => {
+          faqItem.classList.remove("active");
+        });
 
         if (!isActive) {
           item.classList.add("active");
