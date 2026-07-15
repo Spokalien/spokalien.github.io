@@ -4,15 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>$UNC — The Flying UNC</title>
-  <meta name="description" content="$UNC is The Flying UNC on Solana. The bison is loose. Join the flight." />
+  <meta
+    name="description"
+    content="$UNC is The Flying UNC on Solana. The bison is loose. Join the flight."
+  />
   <meta name="theme-color" content="#080a10" />
   
-  <!-- UPDATED: Website Icon (Favicon) set to the Main Image -->
+  <!-- WEBSITE ICON (FAVICON) - MAIN $UNC IMAGE -->
   <link rel="icon" type="image/jpeg" href="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
   <style>
     :root {
       --bg: #05070a;
@@ -93,10 +99,11 @@
     nav { display: flex; align-items: center; justify-content: space-between; min-height: 84px; }
     .brand { display: flex; align-items: center; gap: 12px; font-family: "Archivo Black", sans-serif; font-size: 1.3rem; letter-spacing: -0.05em; }
     
-    /* UPDATED: Brand Mark is now the Main Image */
+    /* BRAND MARK - Main $UNC Image */
     .brand-mark {
       display: block;
-      width: 44px; height: 44px;
+      width: 44px;
+      height: 44px;
       border-radius: 12px;
       overflow: hidden;
       border: 2px solid var(--yellow);
@@ -106,12 +113,14 @@
       background: #000;
     }
     .brand-mark img {
-      width: 100%; height: 100%; object-fit: cover;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .brand:hover .brand-mark {
       transform: rotate(0deg) scale(1.1);
     }
-
+    
     .nav-links { display: flex; gap: 32px; color: var(--muted); font-size: 0.9rem; font-weight: 700; }
     .nav-links a { position: relative; padding: 6px 0; }
     .nav-links a::after {
@@ -293,8 +302,32 @@
       border-radius: 24px;
       background: linear-gradient(135deg, rgba(255, 90, 31, 0.08), transparent 70%), var(--panel);
       display: flex; flex-direction: column; justify-content: space-between;
+      gap: 24px;
     }
-    .manifesto p { font-size: clamp(1.4rem, 2vw, 1.9rem); font-weight: 800; line-height: 1.4; margin-top: 40px; }
+    
+    /* MANIFESTO IMAGE STYLES */
+    .manifesto-img-wrapper {
+      width: 100%;
+      height: 200px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 197, 41, 0.3);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      margin-top: 16px;
+      position: relative;
+    }
+    .manifesto-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: var(--transition);
+    }
+    .manifesto:hover .manifesto-img-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .manifesto p { font-size: clamp(1.3rem, 1.8vw, 1.7rem); font-weight: 800; line-height: 1.4; }
     .manifesto p span { color: var(--yellow); }
     .feature-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .feature-card {
@@ -588,9 +621,9 @@
     <div class="container">
       <nav>
         <a class="brand" href="#top" aria-label="$UNC Home">
-          <!-- UPDATED: Brand Mark is the Main Image -->
+          <!-- TOP LEFT ICON - Main $UNC Image -->
           <span class="brand-mark">
-            <img src="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg" alt="$UNC Logo">
+            <img src="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg" alt="$UNC Logo" />
           </span>
           <span>$UNC</span>
         </a>
@@ -658,7 +691,13 @@
         </div>
         <div class="about-grid">
           <article class="manifesto">
-            <span class="eyebrow">The UNC Manifesto</span>
+            <div>
+              <span class="eyebrow">The UNC Manifesto</span>
+              <!-- IMAGE ADDED TO UNC MANIFESTO -->
+              <div class="manifesto-img-wrapper">
+                <img src="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg" alt="The Flying UNC Manifesto Artwork" referrerpolicy="no-referrer" />
+              </div>
+            </div>
             <p>“When the market gets wild, the herd does not panic. <span>It gets wings.</span>”</p>
           </article>
           <div class="feature-cards">
