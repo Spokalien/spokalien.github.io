@@ -50,16 +50,16 @@
         position: fixed;
         top: 0;
         left: 0;
-        width: 60px; /* Size of your cursor image */
+        width: 60px;
         height: 60px;
-        background-image: url("unc_carl.png"); /* <--- YOUR IMAGE NAME HERE */
+        background-image: url("unc_carl.png");
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
-        pointer-events: none; /* Lets you click through the image */
+        pointer-events: none;
         z-index: 999999;
         will-change: transform;
-        animation: spinCursor 1.5s linear infinite; /* 1.5s is the rotation speed */
+        animation: spinCursor 1.5s linear infinite;
       }
     }
 
@@ -125,6 +125,7 @@
       box-shadow: 0 0 10px var(--lime);
       content: "";
     }
+
     /* Nav */
     .nav-wrap {
       position: fixed; top: 0; z-index: 100; width: 100%;
@@ -196,6 +197,7 @@
     .button-dark { border-color: var(--line); background: rgba(255, 255, 255, 0.03); color: var(--text); }
     .button-dark:hover { border-color: rgba(255, 197, 41, 0.4); background: rgba(255, 197, 41, 0.05); }
     .menu-button { display: none; color: white; font-size: 1.5rem; }
+
     /* Hero */
     .hero { position: relative; min-height: 850px; padding: 160px 0 80px; overflow: hidden; }
     .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 40px; }
@@ -247,6 +249,7 @@
       background: transparent;
     }
     .copy-btn:hover { border-color: var(--yellow); background: rgba(255, 197, 41, 0.08); }
+
     /* Hero Art */
     .hero-art { position: relative; min-height: 540px; }
     @keyframes float {
@@ -301,6 +304,7 @@
       transform: rotate(-12deg);
       box-shadow: 0 0 15px rgba(201, 255, 85, 0.1);
     }
+
     /* Chart */
     .chart-container-toggle { width: 100%; margin-top: 24px; }
     .chart-iframe-wrapper {
@@ -312,6 +316,240 @@
     }
     .chart-iframe-wrapper.show { display: block; }
     .chart-iframe-wrapper iframe { display: block; width: 100%; height: 450px; border: 0; }
+
+    /* UNC Meme Generator */
+    .meme-generator {
+      display: grid;
+      grid-template-columns: minmax(270px, 0.72fr) minmax(0, 1.28fr);
+      gap: 24px;
+      padding: 24px;
+      border: 1px solid rgba(255, 197, 41, 0.3);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(255, 90, 31, 0.12), transparent 25rem),
+        #090c12;
+    }
+    .meme-controls {
+      display: grid;
+      align-content: start;
+      gap: 16px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+    .meme-upload {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 88px;
+      padding: 18px;
+      border: 1px dashed rgba(255, 197, 41, 0.55);
+      border-radius: 14px;
+      background: rgba(255, 197, 41, 0.06);
+      color: var(--yellow);
+      text-align: center;
+      transition: var(--transition);
+    }
+    .meme-upload:hover {
+      border-color: var(--yellow);
+      background: rgba(255, 197, 41, 0.12);
+      transform: translateY(-2px);
+    }
+    .meme-upload input {
+      display: none;
+    }
+    .meme-upload-content {
+      display: grid;
+      gap: 5px;
+    }
+    .meme-upload-content strong {
+      font-size: 0.95rem;
+    }
+    .meme-upload-content span {
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 0.7rem;
+    }
+    .meme-file-name {
+      overflow: hidden;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 0.7rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .meme-field {
+      display: grid;
+      gap: 8px;
+    }
+    .meme-field > label,
+    .meme-range-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+    .meme-field input[type="text"] {
+      width: 100%;
+      min-height: 46px;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      outline: none;
+      background: rgba(0, 0, 0, 0.28);
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+      font-size: 0.85rem;
+    }
+    .meme-field input[type="text"]:focus {
+      border-color: rgba(255, 197, 41, 0.65);
+      box-shadow: 0 0 0 3px rgba(255, 197, 41, 0.08);
+    }
+    .meme-range-head output {
+      color: var(--yellow);
+      font-family: "DM Mono", monospace;
+      font-size: 0.72rem;
+    }
+    .meme-field input[type="range"] {
+      width: 100%;
+      accent-color: var(--yellow);
+    }
+    .meme-color-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .meme-color-row label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 0.7rem;
+    }
+    .meme-color-row input[type="color"] {
+      width: 38px;
+      height: 32px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--panel);
+    }
+    .meme-check {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    .meme-check input {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--yellow);
+    }
+    .meme-actions {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .meme-actions .button {
+      min-height: 46px;
+      padding: 0 16px;
+    }
+    .meme-actions .button:disabled {
+      opacity: 0.45;
+      pointer-events: none;
+      transform: none;
+    }
+    .meme-reset {
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+    .meme-reset:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      color: var(--text);
+    }
+    .meme-note {
+      color: #687386;
+      font-size: 0.72rem;
+      line-height: 1.55;
+    }
+    .meme-preview {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      min-height: 520px;
+      padding: 18px;
+      border: 1px dashed var(--line);
+      border-radius: 20px;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        #05070a;
+      background-size: 28px 28px;
+      transition: var(--transition);
+    }
+    .meme-preview.dragging {
+      border-color: var(--yellow);
+      background-color: rgba(255, 197, 41, 0.06);
+      box-shadow: inset 0 0 30px rgba(255, 197, 41, 0.08);
+    }
+    #memeCanvas {
+      display: none;
+      width: auto;
+      max-width: 100%;
+      max-height: 720px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
+    }
+    .meme-preview.has-image #memeCanvas {
+      display: block;
+    }
+    .meme-empty {
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      max-width: 310px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .meme-empty-icon {
+      display: grid;
+      width: 58px;
+      height: 58px;
+      place-items: center;
+      border: 1px solid rgba(255, 197, 41, 0.35);
+      border-radius: 18px;
+      background: rgba(255, 197, 41, 0.08);
+      color: var(--yellow);
+      font-size: 1.6rem;
+    }
+    .meme-empty strong {
+      color: var(--text);
+      font-size: 1rem;
+    }
+    .meme-empty span {
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+    .meme-preview.has-image .meme-empty {
+      display: none;
+    }
+
     /* Ticker */
     .ticker { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--yellow); color: #0b0e14; white-space: nowrap; }
     .ticker-track {
@@ -323,6 +561,7 @@
     }
     .ticker-track span::after { margin-left: 40px; color: var(--orange); content: "✦"; }
     @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
     /* Sections */
     section.section { padding: 120px 0; position: relative; }
     .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-bottom: 54px; }
@@ -335,6 +574,7 @@
     }
     .section-title em { color: var(--orange); font-style: normal; }
     .section-text { max-width: 400px; color: var(--muted); font-size: 1rem; line-height: 1.7; }
+
     /* About */
     .about-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 32px; }
     .manifesto {
@@ -387,6 +627,7 @@
     }
     .feature-card h3 { margin-bottom: 10px; font-size: 1.05rem; font-weight: 800; }
     .feature-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+
     /* Token */
     .token-area { background: rgba(10, 14, 21, 0.6); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); backdrop-filter: blur(5px); }
     .token-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; }
@@ -415,6 +656,7 @@
     .token-list li:last-child { border-bottom: 0; }
     .token-list span { color: var(--muted); }
     .token-list strong { color: var(--text); font-family: "DM Mono", monospace; font-size: 0.85rem; }
+
     /* Roadmap */
     .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .roadmap-card {
@@ -445,6 +687,7 @@
       color: var(--lime);
       box-shadow: 0 0 10px rgba(201, 255, 85, 0.1);
     }
+
     /* Buy Panel */
     .buy-panel {
       display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 40px;
@@ -480,6 +723,7 @@
     }
     .step p { color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
     .step strong { color: white; }
+
     /* Socials */
     .socials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .social-card {
@@ -554,6 +798,7 @@
     }
     .social-cta span { transition: transform 0.25s ease; }
     .social-card:hover .social-cta span { transform: translate(2px, -2px); }
+
     /* FAQ */
     .faq-container { max-width: 800px; margin: 0 auto; }
     .faq-item { border-bottom: 1px solid var(--line); padding: 24px 0; }
@@ -568,6 +813,7 @@
     .faq-content p { padding-top: 16px; color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
     .faq-item.active .faq-content { max-height: 200px; }
     .faq-item.active .faq-icon { transform: rotate(45deg); color: var(--yellow); }
+
     /* Footer */
     footer { padding: 80px 0 32px; border-top: 1px solid var(--line); }
     .footer-main {
@@ -601,6 +847,7 @@
       color: #616b7c; font-size: 0.76rem; line-height: 1.6;
     }
     .footer-bottom p:last-child { max-width: 500px; text-align: right; }
+
     /* Toast */
     .toast {
       position: fixed; z-index: 1000; right: 24px; bottom: 24px;
@@ -616,9 +863,11 @@
       transition: var(--transition);
     }
     .toast.show { opacity: 1; transform: translateY(0); }
+
     @media (max-width: 980px) {
       .socials-grid { grid-template-columns: repeat(2, 1fr); }
     }
+
     @media (max-width: 850px) {
       .nav-links { display: none; }
       .menu-button { display: block; }
@@ -636,7 +885,10 @@
       .hero-art { min-height: 480px; max-width: 580px; margin: 0 auto; width: 100%; }
       .roadmap { grid-template-columns: 1fr; }
       .section-heading, .footer-main { align-items: flex-start; flex-direction: column; gap: 20px; }
+      .meme-generator { grid-template-columns: 1fr; }
+      .meme-preview { min-height: 420px; }
     }
+
     @media (max-width: 560px) {
       .socials-grid { grid-template-columns: 1fr; }
       .social-card {
@@ -648,12 +900,18 @@
       .social-meta { grid-area: meta; }
       .social-cta { grid-area: cta; justify-content: center; }
     }
+
     @media (max-width: 540px) {
       .container { width: calc(100% - 24px); }
       .hero h1 { font-size: clamp(3rem, 15vw, 4.8rem); }
       .buy-panel { padding: 28px; }
       .footer-bottom { flex-direction: column; }
       .footer-bottom p:last-child { text-align: left; }
+      .meme-generator { padding: 12px; }
+      .meme-controls { padding: 18px; }
+      .meme-preview { min-height: 320px; padding: 10px; }
+      .meme-actions { grid-template-columns: 1fr; }
+      .meme-reset { min-height: 44px; }
     }
   </style>
 </head>
@@ -677,6 +935,7 @@
           <a href="#token">Token</a>
           <a href="#roadmap">Flight Plan</a>
           <a href="#buy">How to Buy</a>
+          <a href="#meme-lab">Meme Lab</a>
           <a href="#socials">Socials</a>
           <a href="#faq">FAQ</a>
         </div>
@@ -688,6 +947,7 @@
       </nav>
     </div>
   </div>
+
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
@@ -719,12 +979,14 @@
         </div>
       </div>
     </section>
+
     <div class="ticker" aria-hidden="true">
       <div class="ticker-track">
         <span>$UNC IS FLYING</span><span>THE BISON IS LOOSE</span><span>SOLANA MEME ENERGY</span><span>THE FLYING UNC</span><span>JOIN THE HERD</span>
         <span>$UNC IS FLYING</span><span>THE BISON IS LOOSE</span><span>SOLANA MEME ENERGY</span><span>THE FLYING UNC</span><span>JOIN THE HERD</span>
       </div>
     </div>
+
     <section class="section" id="about">
       <div class="container">
         <div class="section-heading">
@@ -754,6 +1016,7 @@
         </div>
       </div>
     </section>
+
     <section class="section token-area" id="token">
       <div class="container">
         <div class="section-heading">
@@ -788,6 +1051,7 @@
         </div>
       </div>
     </section>
+
     <section class="section" id="roadmap">
       <div class="container">
         <div class="section-heading">
@@ -804,6 +1068,7 @@
         </div>
       </div>
     </section>
+
     <section class="section" id="buy">
       <div class="container">
         <div class="buy-panel">
@@ -824,6 +1089,92 @@
         </div>
       </div>
     </section>
+
+    <!-- UNC MEME GENERATOR -->
+    <section class="section" id="meme-lab">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">UNC Meme Lab</span>
+            <h2 class="section-title">Upload. Edit. <em>Fly.</em></h2>
+          </div>
+          <p class="section-text">Turn any image into a Flying UNC meme. Everything happens in your browser, so your image is never uploaded anywhere.</p>
+        </div>
+
+        <div class="meme-generator">
+          <div class="meme-controls">
+            <label class="meme-upload" for="memeImageInput">
+              <span class="meme-upload-content">
+                <strong>✦ Upload an image</strong>
+                <span>PNG, JPG, GIF, or WEBP</span>
+              </span>
+              <input type="file" id="memeImageInput" accept="image/*" />
+            </label>
+
+            <div class="meme-file-name" id="memeFileName">No image selected</div>
+
+            <div class="meme-field">
+              <label for="memeTopText">Top text</label>
+              <input type="text" id="memeTopText" maxlength="80" placeholder="WHEN THE BISON..." />
+            </div>
+
+            <div class="meme-field">
+              <label for="memeBottomText">Bottom text</label>
+              <input type="text" id="memeBottomText" maxlength="80" placeholder="GETS ITS WINGS" />
+            </div>
+
+            <div class="meme-field">
+              <div class="meme-range-head">
+                <label for="memeFontSize">Text size</label>
+                <output id="memeFontSizeValue">72px</output>
+              </div>
+              <input type="range" id="memeFontSize" min="28" max="180" value="72" />
+            </div>
+
+            <div class="meme-field">
+              <div class="meme-range-head">
+                <label for="memeStrokeWidth">Outline width</label>
+                <output id="memeStrokeWidthValue">4px</output>
+              </div>
+              <input type="range" id="memeStrokeWidth" min="1" max="12" value="4" />
+            </div>
+
+            <div class="meme-color-row">
+              <label for="memeTextColor">
+                Text color
+                <input type="color" id="memeTextColor" value="#ffffff" />
+              </label>
+              <label for="memeStrokeColor">
+                Outline
+                <input type="color" id="memeStrokeColor" value="#05070a" />
+              </label>
+            </div>
+
+            <label class="meme-check">
+              <input type="checkbox" id="memeStampToggle" />
+              <span>Add a $UNC watermark to the meme</span>
+            </label>
+
+            <div class="meme-actions">
+              <button class="button button-primary" id="memeDownload" type="button" disabled>Download Meme ↧</button>
+              <button class="meme-reset" id="memeReset" type="button">Reset</button>
+            </div>
+
+            <p class="meme-note">Tip: use short, bold text for the strongest meme impact. Your finished meme downloads as a PNG.</p>
+          </div>
+
+          <div class="meme-preview" id="memePreview">
+            <canvas id="memeCanvas" aria-label="Generated UNC meme preview"></canvas>
+            <div class="meme-empty" id="memeEmptyState">
+              <div class="meme-empty-icon">✦</div>
+              <strong>Drop your image here</strong>
+              <span>Upload a photo, add your UNC text, and download your finished meme.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="socials">
       <div class="container">
         <div class="section-heading">
@@ -844,6 +1195,7 @@
             <div class="social-meta"><h3>X / Twitter</h3><span>@FlyingUncSolana</span></div>
             <span class="social-cta">Follow <span aria-hidden="true">↗</span></span>
           </a>
+
           <!-- X Community -->
           <a class="social-card" href="https://twitter.com/i/communities/1953823134127100097" target="_blank" rel="noopener noreferrer" style="--accent: var(--orange)">
             <div class="social-icon">
@@ -855,6 +1207,7 @@
             <div class="social-meta"><h3>X Community</h3><span>Join the Herd</span></div>
             <span class="social-cta">Join <span aria-hidden="true">↗</span></span>
           </a>
+
           <!-- Telegram -->
           <a class="social-card" href="https://t.me/FLYINGUNCCTO" target="_blank" rel="noopener noreferrer" style="--accent: var(--blue)">
             <div class="social-icon">
@@ -865,6 +1218,7 @@
             <div class="social-meta"><h3>Telegram</h3><span>t.me/FLYINGUNCCTO</span></div>
             <span class="social-cta">Join Chat <span aria-hidden="true">↗</span></span>
           </a>
+
           <!-- DexScreener -->
           <a class="social-card" href="https://dexscreener.com/solana/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" style="--accent: var(--lime)">
             <div class="social-icon">
@@ -875,6 +1229,7 @@
             <div class="social-meta"><h3>DexScreener</h3><span>Live Chart</span></div>
             <span class="social-cta">View Chart <span aria-hidden="true">↗</span></span>
           </a>
+
           <!-- Pump.fun -->
           <a class="social-card" href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" style="--accent: var(--orange)">
             <div class="social-icon">
@@ -885,6 +1240,7 @@
             <div class="social-meta"><h3>Pump.fun</h3><span>Buy $UNC</span></div>
             <span class="social-cta">Launch App <span aria-hidden="true">↗</span></span>
           </a>
+
           <!-- Solscan -->
           <a class="social-card" href="https://solscan.io/token/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" style="--accent: #b580ff">
             <div class="social-icon">
@@ -898,6 +1254,7 @@
         </div>
       </div>
     </section>
+
     <section class="section" id="faq">
       <div class="container">
         <div style="text-align: center; margin-bottom: 50px;">
@@ -921,6 +1278,7 @@
       </div>
     </section>
   </main>
+
   <footer>
     <div class="container">
       <div class="footer-main">
@@ -940,6 +1298,7 @@
       </div>
     </div>
   </footer>
+
   <div class="toast" id="toast">Contract address copied!</div>
   
   <script>
@@ -957,6 +1316,294 @@
     }
     // ==========================================
 
+    // ==========================================
+    // UNC MEME GENERATOR
+    // ==========================================
+    const memeImageInput = document.getElementById("memeImageInput");
+    const memeFileName = document.getElementById("memeFileName");
+    const memeTopText = document.getElementById("memeTopText");
+    const memeBottomText = document.getElementById("memeBottomText");
+    const memeFontSize = document.getElementById("memeFontSize");
+    const memeFontSizeValue = document.getElementById("memeFontSizeValue");
+    const memeStrokeWidth = document.getElementById("memeStrokeWidth");
+    const memeStrokeWidthValue = document.getElementById("memeStrokeWidthValue");
+    const memeTextColor = document.getElementById("memeTextColor");
+    const memeStrokeColor = document.getElementById("memeStrokeColor");
+    const memeStampToggle = document.getElementById("memeStampToggle");
+    const memeDownload = document.getElementById("memeDownload");
+    const memeReset = document.getElementById("memeReset");
+    const memePreview = document.getElementById("memePreview");
+    const memeCanvas = document.getElementById("memeCanvas");
+    const memeCtx = memeCanvas.getContext("2d");
+
+    let uploadedMemeImage = null;
+
+    function updateMemeRangeLabels() {
+      memeFontSizeValue.textContent = `${memeFontSize.value}px`;
+      memeStrokeWidthValue.textContent = `${memeStrokeWidth.value}px`;
+    }
+
+    function wrapMemeText(text, maxWidth) {
+      const words = text.trim().toUpperCase().split(/\s+/).filter(Boolean);
+      const lines = [];
+      let currentLine = "";
+
+      words.forEach((word) => {
+        const testLine = currentLine ? `${currentLine} ${word}` : word;
+
+        if (memeCtx.measureText(testLine).width <= maxWidth || !currentLine) {
+          currentLine = testLine;
+        } else {
+          lines.push(currentLine);
+          currentLine = word;
+        }
+      });
+
+      if (currentLine) {
+        lines.push(currentLine);
+      }
+
+      return lines;
+    }
+
+    function drawMemeStamp() {
+      const stampWidth = Math.min(memeCanvas.width * 0.3, 250);
+      const stampHeight = stampWidth * 0.29;
+      const padding = Math.max(14, memeCanvas.width * 0.025);
+      const x = padding;
+      const y = memeCanvas.height - stampHeight - padding;
+
+      memeCtx.save();
+      memeCtx.fillStyle = "rgba(255, 197, 41, 0.95)";
+      memeCtx.strokeStyle = "#05070a";
+      memeCtx.lineWidth = Math.max(2, memeCanvas.width / 450);
+
+      memeCtx.beginPath();
+      memeCtx.roundRect(x, y, stampWidth, stampHeight, stampHeight * 0.22);
+      memeCtx.fill();
+      memeCtx.stroke();
+
+      memeCtx.fillStyle = "#05070a";
+      memeCtx.font = `900 ${Math.max(14, stampHeight * 0.34)}px "Archivo Black", Arial, sans-serif`;
+      memeCtx.textAlign = "left";
+      memeCtx.textBaseline = "middle";
+      memeCtx.fillText("$UNC", x + stampWidth * 0.08, y + stampHeight * 0.43);
+
+      memeCtx.font = `700 ${Math.max(7, stampHeight * 0.16)}px "DM Mono", monospace`;
+      memeCtx.fillText("THE FLYING UNC", x + stampWidth * 0.08, y + stampHeight * 0.75);
+      memeCtx.restore();
+    }
+
+    function drawMemeText(rawText, position) {
+      const text = rawText.trim();
+
+      if (!text) {
+        return;
+      }
+
+      const requestedFontSize = Number(memeFontSize.value);
+      const fontSize = Math.max(
+        18,
+        Math.min(requestedFontSize, memeCanvas.width * 0.14)
+      );
+      const sidePadding = Math.max(20, memeCanvas.width * 0.055);
+      const maxTextWidth = memeCanvas.width - sidePadding * 2;
+      const lineHeight = fontSize * 1.05;
+      const scale = Math.max(0.7, memeCanvas.width / 900);
+      const outlineWidth = Math.max(1, Number(memeStrokeWidth.value) * scale);
+
+      memeCtx.save();
+      memeCtx.font = `900 ${fontSize}px Impact, "Arial Black", sans-serif`;
+      memeCtx.textAlign = "center";
+      memeCtx.textBaseline = "alphabetic";
+      memeCtx.lineJoin = "round";
+      memeCtx.lineWidth = outlineWidth;
+      memeCtx.strokeStyle = memeStrokeColor.value;
+      memeCtx.fillStyle = memeTextColor.value;
+
+      const lines = wrapMemeText(text, maxTextWidth);
+      const totalBlockHeight = (lines.length - 1) * lineHeight;
+      let firstBaseline;
+
+      if (position === "top") {
+        firstBaseline = sidePadding + fontSize;
+      } else {
+        firstBaseline = memeCanvas.height - sidePadding - totalBlockHeight;
+      }
+
+      lines.forEach((line, index) => {
+        const baseline = firstBaseline + index * lineHeight;
+        memeCtx.strokeText(line, memeCanvas.width / 2, baseline, maxTextWidth);
+        memeCtx.fillText(line, memeCanvas.width / 2, baseline, maxTextWidth);
+      });
+
+      memeCtx.restore();
+    }
+
+    function drawMeme() {
+      if (!uploadedMemeImage) {
+        return;
+      }
+
+      const sourceWidth = uploadedMemeImage.naturalWidth || uploadedMemeImage.width;
+      const sourceHeight = uploadedMemeImage.naturalHeight || uploadedMemeImage.height;
+      const maxDimension = 1400;
+      const resizeRatio = Math.min(1, maxDimension / Math.max(sourceWidth, sourceHeight));
+
+      memeCanvas.width = Math.max(1, Math.round(sourceWidth * resizeRatio));
+      memeCanvas.height = Math.max(1, Math.round(sourceHeight * resizeRatio));
+
+      memeCtx.clearRect(0, 0, memeCanvas.width, memeCanvas.height);
+      memeCtx.drawImage(uploadedMemeImage, 0, 0, memeCanvas.width, memeCanvas.height);
+
+      if (memeStampToggle.checked) {
+        drawMemeStamp();
+      }
+
+      drawMemeText(memeTopText.value, "top");
+      drawMemeText(memeBottomText.value, "bottom");
+
+      memePreview.classList.add("has-image");
+      memeDownload.disabled = false;
+    }
+
+    function loadMemeImage(file) {
+      if (!file) {
+        return;
+      }
+
+      if (!file.type.startsWith("image/")) {
+        memeFileName.textContent = "Please select a valid image file.";
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        const image = new Image();
+
+        image.onload = () => {
+          uploadedMemeImage = image;
+          memeFileName.textContent = file.name;
+          drawMeme();
+        };
+
+        image.onerror = () => {
+          memeFileName.textContent = "Unable to load this image.";
+        };
+
+        image.src = event.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    }
+
+    memeImageInput.addEventListener("change", (event) => {
+      loadMemeImage(event.target.files[0]);
+    });
+
+    [
+      memeTopText,
+      memeBottomText,
+      memeFontSize,
+      memeStrokeWidth,
+      memeTextColor,
+      memeStrokeColor,
+      memeStampToggle
+    ].forEach((control) => {
+      control.addEventListener("input", () => {
+        updateMemeRangeLabels();
+        drawMeme();
+      });
+
+      control.addEventListener("change", () => {
+        updateMemeRangeLabels();
+        drawMeme();
+      });
+    });
+
+    ["dragenter", "dragover"].forEach((eventName) => {
+      memePreview.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        memePreview.classList.add("dragging");
+      });
+    });
+
+    ["dragleave", "drop"].forEach((eventName) => {
+      memePreview.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        memePreview.classList.remove("dragging");
+      });
+    });
+
+    memePreview.addEventListener("drop", (event) => {
+      const file = event.dataTransfer.files[0];
+      loadMemeImage(file);
+    });
+
+    memePreview.addEventListener("click", () => {
+      if (!uploadedMemeImage) {
+        memeImageInput.click();
+      }
+    });
+
+    memeDownload.addEventListener("click", () => {
+      if (!uploadedMemeImage) {
+        return;
+      }
+
+      memeCanvas.toBlob((blob) => {
+        if (!blob) {
+          return;
+        }
+
+        const downloadUrl = URL.createObjectURL(blob);
+        const downloadLink = document.createElement("a");
+
+        downloadLink.href = downloadUrl;
+        downloadLink.download = "unc-meme.png";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        downloadLink.remove();
+
+        setTimeout(() => {
+          URL.revokeObjectURL(downloadUrl);
+        }, 1000);
+
+        const originalText = memeDownload.textContent;
+        memeDownload.textContent = "Downloaded ✓";
+
+        setTimeout(() => {
+          memeDownload.textContent = originalText;
+        }, 1600);
+      }, "image/png");
+    });
+
+    memeReset.addEventListener("click", () => {
+      uploadedMemeImage = null;
+      memeImageInput.value = "";
+      memeFileName.textContent = "No image selected";
+      memeTopText.value = "";
+      memeBottomText.value = "";
+      memeFontSize.value = "72";
+      memeStrokeWidth.value = "4";
+      memeTextColor.value = "#ffffff";
+      memeStrokeColor.value = "#05070a";
+      memeStampToggle.checked = false;
+      memeCanvas.width = 900;
+      memeCanvas.height = 600;
+      memeCtx.clearRect(0, 0, memeCanvas.width, memeCanvas.height);
+      memePreview.classList.remove("has-image");
+      memeDownload.disabled = true;
+      updateMemeRangeLabels();
+    });
+
+    updateMemeRangeLabels();
+
+    // ==========================================
+    // ORIGINAL SITE JAVASCRIPT
+    // ==========================================
+
     const CA = "6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump";
     const navWrap = document.getElementById("navWrap");
     const navLinks = document.getElementById("navLinks");
@@ -964,25 +1611,31 @@
     const toast = document.getElementById("toast");
     const chartToggleBtn = document.getElementById("chartToggleBtn");
     const chartIframeWrapper = document.getElementById("chartIframeWrapper");
+
     // Sticky nav
     window.addEventListener("scroll", () => {
       navWrap.classList.toggle("scrolled", window.scrollY > 20);
     });
+
     // Mobile menu
     menuButton.addEventListener("click", () => {
       navLinks.classList.toggle("mobile-open");
       menuButton.textContent = navLinks.classList.contains("mobile-open") ? "×" : "☰";
     });
+
     document.querySelectorAll(".nav-links a").forEach((link) => {
       link.addEventListener("click", () => {
         navLinks.classList.remove("mobile-open");
         menuButton.textContent = "☰";
       });
     });
+
     // Chart toggle (lazy load iframe only when open)
     let chartLoaded = false;
+
     chartToggleBtn.addEventListener("click", () => {
       const willShow = !chartIframeWrapper.classList.contains("show");
+
       if (willShow && !chartLoaded) {
         const iframe = document.createElement("iframe");
         iframe.src = "https://dexscreener.com/solana/" + CA + "?embed=1&theme=dark";
@@ -992,15 +1645,19 @@
         chartIframeWrapper.appendChild(iframe);
         chartLoaded = true;
       }
+
       chartIframeWrapper.classList.toggle("show", willShow);
       chartToggleBtn.textContent = willShow ? "📊 Close Live Chart" : "📊 Toggle Live Chart";
     });
+
     // Copy-to-clipboard + toast
     document.querySelectorAll("[data-copy]").forEach((button) => {
       button.addEventListener("click", async () => {
         const address = button.dataset.copy;
-        try { await navigator.clipboard.writeText(address); }
-        catch {
+
+        try {
+          await navigator.clipboard.writeText(address);
+        } catch {
           const ta = document.createElement("textarea");
           ta.value = address;
           document.body.appendChild(ta);
@@ -1008,23 +1665,32 @@
           document.execCommand("copy");
           ta.remove();
         }
+
         const oldText = button.textContent;
         button.textContent = "COPIED!";
         toast.classList.add("show");
+
         setTimeout(() => {
           button.textContent = oldText;
           toast.classList.remove("show");
         }, 1800);
       });
     });
+
     // FAQ accordion
     const faqItems = document.querySelectorAll(".faq-item");
+
     faqItems.forEach((item) => {
       const trigger = item.querySelector(".faq-trigger");
+
       trigger.addEventListener("click", () => {
         const isActive = item.classList.contains("active");
+
         faqItems.forEach((i) => i.classList.remove("active"));
-        if (!isActive) item.classList.add("active");
+
+        if (!isActive) {
+          item.classList.add("active");
+        }
       });
     });
   </script>
