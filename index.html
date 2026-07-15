@@ -4,17 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>$UNC — The Flying UNC</title>
-  <meta
-    name="description"
-    content="$UNC is The Flying UNC on Solana. The bison is loose. Join the flight."
-  />
+  <meta name="description" content="$UNC is The Flying UNC on Solana. The bison is loose. Join the flight." />
   <meta name="theme-color" content="#080a10" />
+  
+  <!-- UPDATED: Website Icon (Favicon) set to the Main Image -->
+  <link rel="icon" type="image/jpeg" href="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #05070a;
@@ -94,20 +92,26 @@
     }
     nav { display: flex; align-items: center; justify-content: space-between; min-height: 84px; }
     .brand { display: flex; align-items: center; gap: 12px; font-family: "Archivo Black", sans-serif; font-size: 1.3rem; letter-spacing: -0.05em; }
+    
+    /* UPDATED: Brand Mark is now the Main Image */
     .brand-mark {
-      display: grid; width: 40px; height: 40px; place-items: center;
-      border: 1.5px solid rgba(255, 197, 41, 0.5);
+      display: block;
+      width: 44px; height: 44px;
       border-radius: 12px;
-      background: rgba(255, 197, 41, 0.05);
-      font-size: 1.25rem;
+      overflow: hidden;
+      border: 2px solid var(--yellow);
+      box-shadow: 0 0 15px var(--glow-yellow);
       transform: rotate(-6deg);
       transition: var(--transition);
+      background: #000;
+    }
+    .brand-mark img {
+      width: 100%; height: 100%; object-fit: cover;
     }
     .brand:hover .brand-mark {
-      transform: rotate(0deg) scale(1.08);
-      border-color: var(--yellow);
-      box-shadow: 0 0 15px var(--glow-yellow);
+      transform: rotate(0deg) scale(1.1);
     }
+
     .nav-links { display: flex; gap: 32px; color: var(--muted); font-size: 0.9rem; font-weight: 700; }
     .nav-links a { position: relative; padding: 6px 0; }
     .nav-links a::after {
@@ -584,7 +588,10 @@
     <div class="container">
       <nav>
         <a class="brand" href="#top" aria-label="$UNC Home">
-          <span class="brand-mark">🦬</span>
+          <!-- UPDATED: Brand Mark is the Main Image -->
+          <span class="brand-mark">
+            <img src="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg" alt="$UNC Logo">
+          </span>
           <span>$UNC</span>
         </a>
         <div class="nav-links" id="navLinks">
@@ -803,16 +810,6 @@
             </div>
             <div class="social-meta"><h3>Solscan</h3><span>On-Chain Data</span></div>
             <span class="social-cta">Inspect <span aria-hidden="true">↗</span></span>
-          </a>
-          <!-- Raydium -->
-          <a class="social-card" href="https://raydium.io/swap/?inputMint=sol&outputMint=6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" style="--accent: #4fc1ff">
-            <div class="social-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M7 7h11l-3-3"/><path d="M17 17H6l3 3"/>
-              </svg>
-            </div>
-            <div class="social-meta"><h3>Raydium</h3><span>Swap $UNC</span></div>
-            <span class="social-cta">Trade Now <span aria-hidden="true">↗</span></span>
           </a>
         </div>
       </div>
