@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>$UNC — The Flying UNC</title>
+  <meta
+    name="description"
+    content="$UNC is The Flying UNC on Solana. The bison is loose. Join the flight."
+  />
+  <meta name="theme-color" content="#080a10" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #05070a;
+      --panel: #0b0e14;
+      --panel-2: #0f141f;
+      --text: #f7f8fc;
+      --muted: #8e98a8;
+      --line: rgba(255, 255, 255, 0.08);
+      --orange: #ff5a1f;
+      --yellow: #ffc529;
+      --lime: #c9ff55;
+      --blue: #40a0ff;
+      --glow-orange: rgba(255, 90, 31, 0.15);
+      --glow-yellow: rgba(255, 197, 41, 0.15);
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background:
+        radial-gradient(circle at 90% 0%, rgba(255, 90, 31, 0.12), transparent 45rem),
+        radial-gradient(circle at 10% 45%, rgba(201, 255, 85, 0.08), transparent 40rem),
+        radial-gradient(circle at 50% 85%, rgba(64, 160, 255, 0.08), transparent 45rem),
+        var(--bg);
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    a { color: inherit; text-decoration: none; transition: var(--transition); }
+    button { font: inherit; background: none; border: none; cursor: pointer; transition: var(--transition); }
+    .container {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--lime);
+      font-family: "DM Mono", monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 10px var(--lime);
+      content: "";
+    }
+    /* Nav */
+    .nav-wrap {
+      position: fixed; top: 0; z-index: 100; width: 100%;
+      border-bottom: 1px solid transparent;
+      transition: var(--transition);
+    }
+    .nav-wrap.scrolled {
+      background: rgba(5, 7, 10, 0.75); 
+      border-color: var(--line);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; min-height: 84px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-family: "Archivo Black", sans-serif; font-size: 1.3rem; letter-spacing: -0.05em; }
+    .brand-mark {
+      display: grid; width: 40px; height: 40px; place-items: center;
+      border: 1.5px solid rgba(255, 197, 41, 0.5);
+      border-radius: 12px;
+      background: rgba(255, 197, 41, 0.05);
+      font-size: 1.25rem;
+      transform: rotate(-6deg);
+      transition: var(--transition);
+    }
+    .brand:hover .brand-mark {
+      transform: rotate(0deg) scale(1.08);
+      border-color: var(--yellow);
+      box-shadow: 0 0 15px var(--glow-yellow);
+    }
+    .nav-links { display: flex; gap: 32px; color: var(--muted); font-size: 0.9rem; font-weight: 700; }
+    .nav-links a { position: relative; padding: 6px 0; }
+    .nav-links a::after {
+      content: ""; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--yellow);
+      transition: var(--transition);
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .x-link {
+      display: grid; width: 42px; height: 42px; place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .x-link:hover {
+      border-color: var(--yellow); color: var(--yellow);
+      background: var(--glow-yellow);
+      transform: translateY(-2px);
+    }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 48px; padding: 0 24px;
+      border: 1px solid transparent; border-radius: 12px;
+      font-size: 0.88rem; font-weight: 800;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--yellow); box-shadow: 0 8px 24px rgba(255, 197, 41, 0.15); color: #0c0903; }
+    .button-primary:hover { background: #ffe085; box-shadow: 0 12px 28px rgba(255, 197, 41, 0.3); }
+    .button-dark { border-color: var(--line); background: rgba(255, 255, 255, 0.03); color: var(--text); }
+    .button-dark:hover { border-color: rgba(255, 197, 41, 0.4); background: rgba(255, 197, 41, 0.05); }
+    .menu-button { display: none; color: white; font-size: 1.5rem; }
+    /* Hero */
+    .hero { position: relative; min-height: 850px; padding: 160px 0 80px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 40px; }
+    .hero-copy { position: relative; z-index: 2; }
+    .trending {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-bottom: 24px; padding: 8px 16px;
+      border: 1px solid rgba(201, 255, 85, 0.25);
+      border-radius: 99px;
+      background: rgba(201, 255, 85, 0.06);
+      color: var(--lime);
+      font-family: "DM Mono", monospace;
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .trending strong {
+      display: grid; width: 18px; height: 18px; place-items: center;
+      border-radius: 50%; background: var(--lime); color: #05070a;
+      font-family: Arial, sans-serif; font-size: 0.7rem;
+    }
+    .hero h1 {
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(3.8rem, 7.5vw, 6.8rem);
+      line-height: 0.88;
+      letter-spacing: -0.07em;
+      text-transform: uppercase;
+    }
+    .hero h1 .accent { color: var(--yellow); text-shadow: 4px 4px 0 var(--orange); }
+    .hero-description { max-width: 540px; margin: 28px 0 32px; color: var(--muted); font-size: 1.1rem; line-height: 1.75; }
+    .hero-description strong { color: white; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+    .contract-mini {
+      display: flex; align-items: center; gap: 12px;
+      width: fit-content; max-width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--line); border-radius: 12px;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(8px);
+      color: var(--muted);
+      font-family: "DM Mono", monospace; font-size: 0.75rem;
+    }
+    .contract-mini span { overflow: hidden; max-width: 250px; color: white; text-overflow: ellipsis; white-space: nowrap; }
+    .copy-btn {
+      padding: 6px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      color: var(--yellow);
+      font-family: "DM Mono", monospace; font-size: 0.7rem; font-weight: 700;
+      background: transparent;
+    }
+    .copy-btn:hover { border-color: var(--yellow); background: rgba(255, 197, 41, 0.08); }
+    /* Hero Art */
+    .hero-art { position: relative; min-height: 540px; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(2deg); }
+      50% { transform: translateY(-12px) rotate(0deg); }
+    }
+    .image-frame {
+      position: absolute; inset: 12px 0 0 10px; overflow: hidden;
+      border: 1px solid rgba(255, 197, 41, 0.4);
+      border-radius: 24px;
+      background: #10141d;
+      box-shadow: 20px 20px 0 rgba(255, 90, 31, 0.2);
+      transform: rotate(2deg);
+      animation: float 6s ease-in-out infinite;
+    }
+    .image-frame::after {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, transparent 40%, rgba(5, 7, 10, 0.9) 100%),
+        linear-gradient(115deg, rgba(255, 90, 31, 0.15), transparent 50%);
+      content: ""; pointer-events: none;
+    }
+    .image-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .art-label {
+      position: absolute; z-index: 3; right: -5px; bottom: 24px;
+      padding: 16px 20px;
+      border: 1px solid rgba(255, 197, 41, 0.5);
+      border-radius: 12px;
+      background: #080a0e;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      color: var(--yellow);
+      font-family: "Archivo Black", sans-serif;
+      font-size: 1.2rem; letter-spacing: -0.04em;
+      text-transform: uppercase;
+      transform: rotate(-3deg);
+    }
+    .art-label small {
+      display: block; margin-top: 4px;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 0.65rem; letter-spacing: 0.1em;
+    }
+    .stamp {
+      position: absolute; z-index: 4; top: -12px; left: -20px;
+      display: grid; width: 110px; height: 110px; place-items: center;
+      border: 2px dashed var(--lime);
+      border-radius: 50%;
+      background: rgba(5, 7, 10, 0.9);
+      color: var(--lime);
+      font-family: "Archivo Black", sans-serif;
+      font-size: 0.82rem; line-height: 1.1; text-align: center;
+      transform: rotate(-12deg);
+      box-shadow: 0 0 15px rgba(201, 255, 85, 0.1);
+    }
+    /* Chart */
+    .chart-container-toggle { width: 100%; margin-top: 24px; }
+    .chart-iframe-wrapper {
+      margin-top: 16px;
+      border: 1px solid var(--line); border-radius: 16px;
+      overflow: hidden; background: var(--panel);
+      display: none;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+    .chart-iframe-wrapper.show { display: block; }
+    .chart-iframe-wrapper iframe { display: block; width: 100%; height: 450px; border: 0; }
+    /* Ticker */
+    .ticker { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--yellow); color: #0b0e14; white-space: nowrap; }
+    .ticker-track {
+      display: inline-flex; gap: 40px; min-width: max-content; padding: 14px 0;
+      animation: ticker 30s linear infinite;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 0.95rem; letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    .ticker-track span::after { margin-left: 40px; color: var(--orange); content: "✦"; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    /* Sections */
+    section.section { padding: 120px 0; position: relative; }
+    .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-bottom: 54px; }
+    .section-title {
+      max-width: 680px; margin-top: 16px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 0.95; letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
+    .section-title em { color: var(--orange); font-style: normal; }
+    .section-text { max-width: 400px; color: var(--muted); font-size: 1rem; line-height: 1.7; }
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 32px; }
+    .manifesto {
+      min-height: 380px; padding: 40px;
+      border: 1px solid rgba(255, 90, 31, 0.3);
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(255, 90, 31, 0.08), transparent 70%), var(--panel);
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .manifesto p { font-size: clamp(1.4rem, 2vw, 1.9rem); font-weight: 800; line-height: 1.4; margin-top: 40px; }
+    .manifesto p span { color: var(--yellow); }
+    .feature-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .feature-card {
+      padding: 32px;
+      border: 1px solid var(--line); border-radius: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      transition: var(--transition);
+    }
+    .feature-card:hover { border-color: rgba(255, 197, 41, 0.4); background: rgba(255, 197, 41, 0.03); transform: translateY(-4px); }
+    .feature-icon {
+      display: grid; width: 44px; height: 44px; margin-bottom: 24px; place-items: center;
+      border-radius: 12px;
+      background: rgba(255, 197, 41, 0.1);
+      color: var(--yellow);
+      font-size: 1.2rem;
+    }
+    .feature-card h3 { margin-bottom: 10px; font-size: 1.05rem; font-weight: 800; }
+    .feature-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+    /* Token */
+    .token-area { background: rgba(10, 14, 21, 0.6); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); backdrop-filter: blur(5px); }
+    .token-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; }
+    .contract-card, .token-info { padding: 40px; border: 1px solid var(--line); border-radius: 24px; background: var(--panel); }
+    .contract-card h3, .token-info h3 { margin-bottom: 24px; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .contract-value {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 18px;
+      border: 1px solid rgba(64, 160, 255, 0.2); border-radius: 12px;
+      background: rgba(64, 160, 255, 0.04);
+    }
+    .contract-value code {
+      overflow: hidden; color: var(--blue);
+      font-family: "DM Mono", monospace;
+      font-size: clamp(0.78rem, 1.4vw, 0.95rem);
+      text-overflow: ellipsis; white-space: nowrap;
+    }
+    .contract-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .token-list { list-style: none; }
+    .token-list li {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.92rem;
+    }
+    .token-list li:last-child { border-bottom: 0; }
+    .token-list span { color: var(--muted); }
+    .token-list strong { color: var(--text); font-family: "DM Mono", monospace; font-size: 0.85rem; }
+    /* Roadmap */
+    .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .roadmap-card {
+      position: relative; min-height: 310px; padding: 36px;
+      border: 1px solid var(--line); border-radius: 24px;
+      background: var(--panel);
+      transition: var(--transition);
+    }
+    .roadmap-card:hover { border-color: rgba(255, 197, 41, 0.3); transform: translateY(-4px); }
+    .roadmap-card.active {
+      border-color: rgba(201, 255, 85, 0.35);
+      background: linear-gradient(155deg, rgba(201, 255, 85, 0.05), transparent 70%), var(--panel);
+    }
+    .roadmap-number { color: rgba(255, 255, 255, 0.08); font-family: "Archivo Black", sans-serif; font-size: 4.8rem; line-height: 1; letter-spacing: -0.08em; }
+    .roadmap-card h3 { position: relative; margin: 32px 0 12px; font-size: 1.3rem; font-weight: 800; }
+    .roadmap-card p { position: relative; color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
+    .badge {
+      position: absolute; top: 32px; right: 32px;
+      padding: 6px 12px; border-radius: 20px;
+      font-family: "DM Mono", monospace;
+      font-size: 0.65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .badge-done { background: rgba(255, 255, 255, 0.05); color: var(--muted); }
+    .badge-active {
+      background: rgba(201, 255, 85, 0.1);
+      border: 1px solid rgba(201, 255, 85, 0.3);
+      color: var(--lime);
+      box-shadow: 0 0 10px rgba(201, 255, 85, 0.1);
+    }
+    /* Buy Panel */
+    .buy-panel {
+      display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 40px;
+      padding: 54px;
+      border: 1px solid rgba(255, 197, 41, 0.3);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(255, 90, 31, 0.15), transparent 25rem),
+        #090c12;
+    }
+    .buy-panel h2 {
+      margin: 16px 0;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      line-height: 0.94; letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
+    .buy-panel > div > p { color: var(--muted); font-size: 1rem; line-height: 1.7; }
+    .steps { display: grid; gap: 16px; }
+    .step {
+      display: flex; align-items: center; gap: 20px; padding: 20px;
+      border: 1px solid var(--line); border-radius: 16px;
+      background: rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
+    }
+    .step:hover { border-color: rgba(255, 255, 255, 0.15); background: rgba(0, 0, 0, 0.3); }
+    .step-number {
+      display: grid; width: 36px; height: 36px; flex: 0 0 36px; place-items: center;
+      border-radius: 10px;
+      background: var(--yellow); color: #0c0903;
+      font-family: "DM Mono", monospace;
+      font-size: 0.82rem; font-weight: 700;
+    }
+    .step p { color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
+    .step strong { color: white; }
+    /* Socials */
+    .socials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .social-card {
+      --accent: var(--yellow);
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--panel);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .social-card::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(
+        circle at 0% 0%,
+        color-mix(in srgb, var(--accent) 18%, transparent),
+        transparent 55%
+      );
+      opacity: 0;
+      transition: var(--transition);
+      pointer-events: none;
+    }
+    .social-card:hover {
+      border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    }
+    .social-card:hover::before { opacity: 1; }
+    .social-icon {
+      display: grid; width: 48px; height: 48px; place-items: center;
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      color: var(--accent);
+      transition: var(--transition);
+    }
+    .social-card:hover .social-icon {
+      transform: rotate(-6deg) scale(1.05);
+      box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 35%, transparent);
+    }
+    .social-meta { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .social-meta h3 { color: var(--text); font-size: 1.02rem; font-weight: 800; letter-spacing: -0.01em; }
+    .social-meta span {
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 0.75rem;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .social-cta {
+      position: relative; z-index: 1;
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 8px 14px;
+      border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      color: var(--accent);
+      font-family: "DM Mono", monospace;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .social-card:hover .social-cta {
+      background: var(--accent); color: #0a0d12;
+      border-color: var(--accent);
+    }
+    .social-cta span { transition: transform 0.25s ease; }
+    .social-card:hover .social-cta span { transform: translate(2px, -2px); }
+    /* FAQ */
+    .faq-container { max-width: 800px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--line); padding: 24px 0; }
+    .faq-trigger {
+      display: flex; justify-content: space-between; align-items: center;
+      width: 100%; text-align: left;
+      font-size: 1.1rem; font-weight: 700; color: var(--text);
+    }
+    .faq-trigger:hover { color: var(--yellow); }
+    .faq-icon { font-size: 1.2rem; color: var(--muted); transition: var(--transition); }
+    .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+    .faq-content p { padding-top: 16px; color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+    .faq-item.active .faq-content { max-height: 200px; }
+    .faq-item.active .faq-icon { transform: rotate(45deg); color: var(--yellow); }
+    /* Footer */
+    footer { padding: 80px 0 32px; border-top: 1px solid var(--line); }
+    .footer-main {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 40px;
+      padding-bottom: 44px;
+      border-bottom: 1px solid var(--line);
+    }
+    .footer-title {
+      max-width: 580px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 0.9; letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
+    .footer-title span { color: var(--yellow); }
+    .socials { display: flex; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
+    .socials a {
+      display: grid; width: 52px; height: 52px; place-items: center;
+      border: 1px solid var(--line); border-radius: 14px;
+      font-size: 1.1rem;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .socials a:hover {
+      border-color: var(--yellow); color: var(--yellow);
+      background: var(--glow-yellow);
+      transform: translateY(-3px);
+    }
+    .footer-bottom {
+      display: flex; justify-content: space-between; gap: 24px;
+      padding-top: 32px;
+      color: #616b7c; font-size: 0.76rem; line-height: 1.6;
+    }
+    .footer-bottom p:last-child { max-width: 500px; text-align: right; }
+    /* Toast */
+    .toast {
+      position: fixed; z-index: 1000; right: 24px; bottom: 24px;
+      padding: 14px 20px;
+      border: 1px solid rgba(201, 255, 85, 0.3); border-radius: 12px;
+      background: #090e05;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      color: var(--lime);
+      font-family: "DM Mono", monospace;
+      font-size: 0.8rem; font-weight: 700;
+      opacity: 0; pointer-events: none;
+      transform: translateY(10px);
+      transition: var(--transition);
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    @media (max-width: 980px) {
+      .socials-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 850px) {
+      .nav-links { display: none; }
+      .menu-button { display: block; }
+      .nav-links.mobile-open {
+        position: fixed; inset: 0; top: 84px; z-index: 99;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        gap: 32px; width: 100%; height: calc(100vh - 84px); padding: 40px;
+        background: rgba(5, 7, 10, 0.96);
+        backdrop-filter: blur(20px);
+        font-size: 1.4rem;
+      }
+      .nav-links.mobile-open a { color: var(--text); }
+      .hero { min-height: auto; padding: 140px 0 60px; }
+      .hero-grid, .about-grid, .token-grid, .buy-panel { grid-template-columns: 1fr; }
+      .hero-art { min-height: 480px; max-width: 580px; margin: 0 auto; width: 100%; }
+      .roadmap { grid-template-columns: 1fr; }
+      .section-heading, .footer-main { align-items: flex-start; flex-direction: column; gap: 20px; }
+    }
+    @media (max-width: 560px) {
+      .socials-grid { grid-template-columns: 1fr; }
+      .social-card {
+        grid-template-columns: auto 1fr;
+        grid-template-areas: "icon meta" "cta cta";
+        row-gap: 14px;
+      }
+      .social-icon { grid-area: icon; }
+      .social-meta { grid-area: meta; }
+      .social-cta { grid-area: cta; justify-content: center; }
+    }
+    @media (max-width: 540px) {
+      .container { width: calc(100% - 24px); }
+      .hero h1 { font-size: clamp(3rem, 15vw, 4.8rem); }
+      .buy-panel { padding: 28px; }
+      .footer-bottom { flex-direction: column; }
+      .footer-bottom p:last-child { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap" id="navWrap">
+    <div class="container">
+      <nav>
+        <a class="brand" href="#top" aria-label="$UNC Home">
+          <span class="brand-mark">🦬</span>
+          <span>$UNC</span>
+        </a>
+        <div class="nav-links" id="navLinks">
+          <a href="#about">The Story</a>
+          <a href="#token">Token</a>
+          <a href="#roadmap">Flight Plan</a>
+          <a href="#buy">How to Buy</a>
+          <a href="#socials">Socials</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="nav-actions">
+          <a class="x-link" href="https://x.com/FlyingUncSolana" target="_blank" rel="noopener noreferrer" aria-label="X Profile">𝕏</a>
+          <a class="button button-primary" href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer">Buy $UNC ↗</a>
+          <button class="menu-button" id="menuButton" aria-label="Toggle navigation">☰</button>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="trending"><strong>𝕏</strong>Trending on X</div>
+          <h1>The<br /><span class="accent">Flying</span><br />UNC.</h1>
+          <p class="hero-description">
+            The bison is loose, the timeline is watching, and <strong>$UNC is taking flight on Solana.</strong>
+            No walking backward, no slowing down. Just pure, unbridled build momentum.
+          </p>
+          <div class="hero-buttons">
+            <a class="button button-primary" href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer">Enter the Flight ↗</a>
+            <button class="button button-dark" id="chartToggleBtn">📊 Toggle Live Chart</button>
+          </div>
+          <div class="contract-mini">
+            <span>CA: 6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump</span>
+            <button class="copy-btn" data-copy="6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump">COPY</button>
+          </div>
+          <div class="chart-container-toggle">
+            <div class="chart-iframe-wrapper" id="chartIframeWrapper"></div>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="stamp">UNC<br />IS<br />AIRBORNE</div>
+          <div class="image-frame">
+            <img src="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg" alt="The Flying UNC bison artwork" referrerpolicy="no-referrer" />
+          </div>
+          <div class="art-label">Bison Mode<small>NO BRAKES. ALL FLIGHT.</small></div>
+        </div>
+      </div>
+    </section>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>$UNC IS FLYING</span><span>THE BISON IS LOOSE</span><span>SOLANA MEME ENERGY</span><span>THE FLYING UNC</span><span>JOIN THE HERD</span>
+        <span>$UNC IS FLYING</span><span>THE BISON IS LOOSE</span><span>SOLANA MEME ENERGY</span><span>THE FLYING UNC</span><span>JOIN THE HERD</span>
+      </div>
+    </div>
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">The Story</span>
+            <h2 class="section-title">Not every UNC was built to <em>walk.</em></h2>
+          </div>
+          <p class="section-text">$UNC is a Solana community movement engineered for those who laugh at chaos, survive the shakeouts, and keep building upward.</p>
+        </div>
+        <div class="about-grid">
+          <article class="manifesto">
+            <span class="eyebrow">The UNC Manifesto</span>
+            <p>“When the market gets wild, the herd does not panic. <span>It gets wings.</span>”</p>
+          </article>
+          <div class="feature-cards">
+            <article class="feature-card"><div class="feature-icon">✦</div><h3>Community First</h3><p>Fully owned by the herd. Driven by relentless content, raids, and shared conviction.</p></article>
+            <article class="feature-card"><div class="feature-icon">◎</div><h3>Built on Solana</h3><p>Utilizing high-speed, cost-effective infrastructure ready for global trading volume.</p></article>
+            <article class="feature-card"><div class="feature-icon">𝕏</div><h3>Timeline Takeover</h3><p>Designed to thrive on raw community energy, X raids, spaces, and replies.</p></article>
+            <article class="feature-card"><div class="feature-icon">↑</div><h3>Reversal Mindset</h3><p>While standard projects fade during dips, the Flying UNC builds back stronger.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section token-area" id="token">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Verify Before You Fly</span>
+            <h2 class="section-title">The official <em>$UNC</em> details.</h2>
+          </div>
+          <p class="section-text">Always verify the contract address before initiating any swap. Security first, herd second.</p>
+        </div>
+        <div class="token-grid">
+          <article class="contract-card">
+            <h3>Official Contract Address</h3>
+            <div class="contract-value">
+              <code>6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump</code>
+              <button class="copy-btn" data-copy="6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump">COPY CA</button>
+            </div>
+            <div class="contract-actions">
+              <a class="button button-primary" href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer">Buy on Pump.fun ↗</a>
+              <a class="button button-dark" href="https://solscan.io/token/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer">View on Solscan ↗</a>
+            </div>
+          </article>
+          <article class="token-info">
+            <h3>Token Information</h3>
+            <ul class="token-list">
+              <li><span>Ticker</span><strong>$UNC</strong></li>
+              <li><span>Name</span><strong>The Flying UNC</strong></li>
+              <li><span>Network</span><strong>Solana</strong></li>
+              <li><span>Tax Structure</span><strong>0% (Buy/Sell)</strong></li>
+              <li><span>Launch Platform</span><strong>Pump.fun</strong></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="roadmap">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Flight Plan</span>
+            <h2 class="section-title">From the timeline to the <em>stratosphere.</em></h2>
+          </div>
+          <p class="section-text">No empty claims. We lay down infrastructure and feed the culture continuously.</p>
+        </div>
+        <div class="roadmap">
+          <article class="roadmap-card"><span class="badge badge-done">Completed</span><span class="roadmap-number">01</span><h3>Bison Escapes</h3><p>Launch official tokens, distribute branding assets, establish core socials, and test engine ignition.</p></article>
+          <article class="roadmap-card active"><span class="badge badge-active">In Progress</span><span class="roadmap-number">02</span><h3>Build & Reverse</h3><p>Cultivating active community hubs, organizing daily spaces, running content challenges, and preparing marketing reversals.</p></article>
+          <article class="roadmap-card"><span class="roadmap-number">03</span><h3>Full Airborne Mode</h3><p>Expand mainstream meme integrations, community-driven tier listings, and scaling ecosystem partnerships.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="buy">
+      <div class="container">
+        <div class="buy-panel">
+          <div>
+            <span class="eyebrow">Ready for Takeoff?</span>
+            <h2>How to buy <span style="color: var(--yellow)">$UNC</span></h2>
+            <p>Join the flight in a few easy steps. Keep some SOL on hand for minor network gas transaction costs.</p>
+            <div style="margin-top: 32px;">
+              <a class="button button-primary" href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer">Buy $UNC on Pump.fun ↗</a>
+            </div>
+          </div>
+          <div class="steps">
+            <div class="step"><span class="step-number">01</span><p><strong>Get a Solana wallet.</strong> Set up a Phantom, Solflare, or Backpack wallet on your browser or mobile phone.</p></div>
+            <div class="step"><span class="step-number">02</span><p><strong>Add SOL.</strong> Purchase SOL from an exchange or bridge it, then transfer it directly into your wallet.</p></div>
+            <div class="step"><span class="step-number">03</span><p><strong>Connect to a DEX.</strong> Navigate to Pump.fun, Raydium, or Jupiter and connect your newly created wallet.</p></div>
+            <div class="step"><span class="step-number">04</span><p><strong>Swap for $UNC.</strong> Input our official verified CA address, set your preferred slippage, and swap.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="socials">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Join the Herd</span>
+            <h2 class="section-title">Find <em>$UNC</em> across the web.</h2>
+          </div>
+          <p class="section-text">Follow the flight across every major channel. Real herd energy lives on X and Telegram — don't get left on the runway.</p>
+        </div>
+        <div class="socials-grid">
+          <!-- X -->
+          <a class="social-card" href="https://x.com/FlyingUncSolana" target="_blank" rel="noopener noreferrer" style="--accent: var(--yellow)">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </div>
+            <div class="social-meta"><h3>X / Twitter</h3><span>@FlyingUncSolana</span></div>
+            <span class="social-cta">Follow <span aria-hidden="true">↗</span></span>
+          </a>
+          <!-- X Community -->
+          <a class="social-card" href="https://twitter.com/i/communities/1953823134127100097" target="_blank" rel="noopener noreferrer" style="--accent: var(--orange)">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="social-meta"><h3>X Community</h3><span>Join the Herd</span></div>
+            <span class="social-cta">Join <span aria-hidden="true">↗</span></span>
+          </a>
+          <!-- Telegram -->
+          <a class="social-card" href="https://t.me/FLYINGUNCCTO" target="_blank" rel="noopener noreferrer" style="--accent: var(--blue)">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+              </svg>
+            </div>
+            <div class="social-meta"><h3>Telegram</h3><span>t.me/FLYINGUNCCTO</span></div>
+            <span class="social-cta">Join Chat <span aria-hidden="true">↗</span></span>
+          </a>
+          <!-- DexScreener -->
+          <a class="social-card" href="https://dexscreener.com/solana/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" style="--accent: var(--lime)">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 3v18h18"/><path d="M7 15l4-6 3 4 5-8"/>
+              </svg>
+            </div>
+            <div class="social-meta"><h3>DexScreener</h3><span>Live Chart</span></div>
+            <span class="social-cta">View Chart <span aria-hidden="true">↗</span></span>
+          </a>
+          <!-- Pump.fun -->
+          <a class="social-card" href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" style="--accent: var(--orange)">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C8 2 5 5 5 9c0 2 .8 3.8 2 5l-1 7 6-3 6 3-1-7c1.2-1.2 2-3 2-5 0-4-3-7-7-7zm0 4a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+              </svg>
+            </div>
+            <div class="social-meta"><h3>Pump.fun</h3><span>Buy $UNC</span></div>
+            <span class="social-cta">Launch App <span aria-hidden="true">↗</span></span>
+          </a>
+          <!-- Solscan -->
+          <a class="social-card" href="https://solscan.io/token/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" style="--accent: #b580ff">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>
+              </svg>
+            </div>
+            <div class="social-meta"><h3>Solscan</h3><span>On-Chain Data</span></div>
+            <span class="social-cta">Inspect <span aria-hidden="true">↗</span></span>
+          </a>
+          <!-- Raydium -->
+          <a class="social-card" href="https://raydium.io/swap/?inputMint=sol&outputMint=6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" style="--accent: #4fc1ff">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M7 7h11l-3-3"/><path d="M17 17H6l3 3"/>
+              </svg>
+            </div>
+            <div class="social-meta"><h3>Raydium</h3><span>Swap $UNC</span></div>
+            <span class="social-cta">Trade Now <span aria-hidden="true">↗</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="faq">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 50px;">
+          <span class="eyebrow">Clear the Air</span>
+          <h2 class="section-title" style="margin: 10px auto; max-width: 600px;">Frequently Asked <em>Questions</em></h2>
+        </div>
+        <div class="faq-container">
+          <div class="faq-item">
+            <button class="faq-trigger"><span>Why is the bison flying?</span><span class="faq-icon">+</span></button>
+            <div class="faq-content"><p>Because typical ground walking bison face boundaries. The Flying UNC transcends limits. It represents rising above standard market limitations with pure community momentum.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger"><span>What is the strategy for the trend reversal?</span><span class="faq-icon">+</span></button>
+            <div class="faq-content"><p>Reversals are earned by building during quiet periods. We are actively expanding community operations, designing original branding resources, hosting public spaces, and generating relentless content so the momentum shifts systematically.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger"><span>Is there a token utility plan?</span><span class="faq-icon">+</span></button>
+            <div class="faq-content"><p>$UNC is primarily launched as a culture-driven community meme coin designed for social amusement. The main utility lies in community mobilization, shared humor, and the spread of bison cultural memes across Web3 channels.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <div class="footer-main">
+        <h2 class="footer-title">The herd has <span>wings.</span></h2>
+        <div class="socials">
+          <a href="https://x.com/FlyingUncSolana" target="_blank" rel="noopener noreferrer" aria-label="X Profile">𝕏</a>
+          <a href="https://twitter.com/i/communities/1953823134127100097" target="_blank" rel="noopener noreferrer" aria-label="X Community">👥</a>
+          <a href="https://t.me/FLYINGUNCCTO" target="_blank" rel="noopener noreferrer" aria-label="Telegram">✈</a>
+          <a href="https://dexscreener.com/solana/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" aria-label="DexScreener">📈</a>
+          <a href="https://pump.fun/coin/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" aria-label="Pump.fun">↗</a>
+          <a href="https://solscan.io/token/6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump" target="_blank" rel="noopener noreferrer" aria-label="Solscan">🔍</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 The Flying UNC. Engineered for the community herd.</p>
+        <p>$UNC is a high-risk meme asset. Nothing contained on this webpage constitutes certified financial recommendation or guidance. Always execute appropriate personal research.</p>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" id="toast">Contract address copied!</div>
+  <script>
+    const CA = "6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump";
+    const navWrap = document.getElementById("navWrap");
+    const navLinks = document.getElementById("navLinks");
+    const menuButton = document.getElementById("menuButton");
+    const toast = document.getElementById("toast");
+    const chartToggleBtn = document.getElementById("chartToggleBtn");
+    const chartIframeWrapper = document.getElementById("chartIframeWrapper");
+    // Sticky nav
+    window.addEventListener("scroll", () => {
+      navWrap.classList.toggle("scrolled", window.scrollY > 20);
+    });
+    // Mobile menu
+    menuButton.addEventListener("click", () => {
+      navLinks.classList.toggle("mobile-open");
+      menuButton.textContent = navLinks.classList.contains("mobile-open") ? "×" : "☰";
+    });
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("mobile-open");
+        menuButton.textContent = "☰";
+      });
+    });
+    // Chart toggle (lazy load iframe only when open)
+    let chartLoaded = false;
+    chartToggleBtn.addEventListener("click", () => {
+      const willShow = !chartIframeWrapper.classList.contains("show");
+      if (willShow && !chartLoaded) {
+        const iframe = document.createElement("iframe");
+        iframe.src = "https://dexscreener.com/solana/" + CA + "?embed=1&theme=dark";
+        iframe.setAttribute("allow", "clipboard-write");
+        iframe.setAttribute("loading", "lazy");
+        iframe.title = "$UNC Live Chart";
+        chartIframeWrapper.appendChild(iframe);
+        chartLoaded = true;
+      }
+      chartIframeWrapper.classList.toggle("show", willShow);
+      chartToggleBtn.textContent = willShow ? "📊 Close Live Chart" : "📊 Toggle Live Chart";
+    });
+    // Copy-to-clipboard + toast
+    document.querySelectorAll("[data-copy]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const address = button.dataset.copy;
+        try { await navigator.clipboard.writeText(address); }
+        catch {
+          const ta = document.createElement("textarea");
+          ta.value = address;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+        }
+        const oldText = button.textContent;
+        button.textContent = "COPIED!";
+        toast.classList.add("show");
+        setTimeout(() => {
+          button.textContent = oldText;
+          toast.classList.remove("show");
+        }, 1800);
+      });
+    });
+    // FAQ accordion
+    const faqItems = document.querySelectorAll(".faq-item");
+    faqItems.forEach((item) => {
+      const trigger = item.querySelector(".faq-trigger");
+      trigger.addEventListener("click", () => {
+        const isActive = item.classList.contains("active");
+        faqItems.forEach((i) => i.classList.remove("active"));
+        if (!isActive) item.classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>
