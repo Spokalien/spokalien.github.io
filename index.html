@@ -35,6 +35,47 @@
       --glow-yellow: rgba(255, 197, 41, 0.15);
       --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
+    /* =========================================
+       CUSTOM ROTATING CURSOR STYLES
+       ========================================= */
+    @media (hover: hover) and (pointer: fine) {
+      /* Hide default cursor on desktop */
+      * {
+        cursor: none !important;
+      }
+      
+      #custom-cursor {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 60px; /* Size of your cursor image */
+        height: 60px;
+        background-image: url("unc_carl.png"); /* <--- YOUR IMAGE NAME HERE */
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        pointer-events: none; /* Lets you click through the image */
+        z-index: 999999;
+        will-change: transform;
+        animation: spinCursor 1.5s linear infinite; /* 1.5s is the rotation speed */
+      }
+    }
+
+    /* Hides the custom cursor on mobile devices */
+    @media (pointer: coarse) {
+      #custom-cursor {
+        display: none !important;
+      }
+    }
+
+    @keyframes spinCursor {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to   { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    /* ========================================= */
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -47,7 +88,6 @@
       font-family: "Manrope", sans-serif;
       overflow-x: hidden;
       position: relative;
-      cursor: none; /* HIDE DEFAULT CURSOR */
     }
     body::before {
       content: "";
@@ -60,40 +100,8 @@
       pointer-events: none;
       z-index: 0;
     }
-
-    /* ========== CUSTOM ROTATING CURSOR ========== */
-    #custom-cursor {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 64px;
-      height: 64px;
-      pointer-events: none;
-      z-index: 999999;
-      transform: translate(-50%, -50%);
-      background-image: url('unc_carl.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      animation: spin-cursor 1.5s linear infinite;
-      transition: opacity 0.2s ease;
-      will-change: transform, left, top;
-    }
-    @keyframes spin-cursor {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to   { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    /* Hide cursor when mouse leaves window */
-    #custom-cursor.hidden { opacity: 0; }
-
-    /* Make sure interactive elements also hide default cursor */
-    a, button, input, textarea, select, [role="button"] {
-      cursor: none;
-    }
-    /* ========== END CUSTOM CURSOR ========== */
-
     a { color: inherit; text-decoration: none; transition: var(--transition); }
-    button { font: inherit; background: none; border: none; cursor: none; transition: var(--transition); }
+    button { font: inherit; background: none; border: none; transition: var(--transition); }
     .container {
       position: relative;
       z-index: 1;
@@ -653,7 +661,7 @@
 
   <!-- CUSTOM ROTATING CURSOR ELEMENT -->
   <div id="custom-cursor"></div>
-
+  
   <div class="nav-wrap" id="navWrap">
     <div class="container">
       <nav>
@@ -735,7 +743,7 @@
                 <img src="https://localnews8.b-cdn.net/2026/07/3zwXusbQ-Bison-Attack-1440x810.jpg" alt="The Flying UNC Manifesto Artwork" referrerpolicy="no-referrer" />
               </div>
             </div>
-            <p>"When the market gets wild, the herd does not panic. <span>It gets wings.</span>"</p>
+            <p>“When the market gets wild, the herd does not panic. <span>It gets wings.</span>”</p>
           </article>
           <div class="feature-cards">
             <article class="feature-card"><div class="feature-icon">✦</div><h3>Community First</h3><p>Fully owned by the herd. Driven by relentless content, raids, and shared conviction.</p></article>
@@ -933,36 +941,21 @@
     </div>
   </footer>
   <div class="toast" id="toast">Contract address copied!</div>
+  
   <script>
-    // ========== CUSTOM ROTATING CURSOR JS ==========
+    // ==========================================
+    // CUSTOM CURSOR JAVASCRIPT LOGIC
+    // ==========================================
     const customCursor = document.getElementById('custom-cursor');
-
-    document.addEventListener('mousemove', (e) => {
-      customCursor.style.left = e.clientX + 'px';
-      customCursor.style.top = e.clientY + 'px';
-    });
-
-    // Hide cursor when mouse leaves the browser window
-    document.addEventListener('mouseleave', () => {
-      customCursor.classList.add('hidden');
-    });
-    document.addEventListener('mouseenter', () => {
-      customCursor.classList.remove('hidden');
-    });
-
-    // Scale up cursor on hover over interactive elements
-    const interactiveEls = document.querySelectorAll('a, button, input, textarea, select, [role="button"]');
-    interactiveEls.forEach((el) => {
-      el.addEventListener('mouseenter', () => {
-        customCursor.style.width = '80px';
-        customCursor.style.height = '80px';
+    
+    // Only track mouse if device is not a touch device
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      document.addEventListener('mousemove', (e) => {
+        customCursor.style.left = e.clientX + 'px';
+        customCursor.style.top = e.clientY + 'px';
       });
-      el.addEventListener('mouseleave', () => {
-        customCursor.style.width = '64px';
-        customCursor.style.height = '64px';
-      });
-    });
-    // ========== END CUSTOM CURSOR JS ==========
+    }
+    // ==========================================
 
     const CA = "6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump";
     const navWrap = document.getElementById("navWrap");
@@ -983,3 +976,57 @@
     document.querySelectorAll(".nav-links a").forEach((link) => {
       link.addEventListener("click", () => {
         navLinks.classList.remove("mobile-open");
+        menuButton.textContent = "☰";
+      });
+    });
+    // Chart toggle (lazy load iframe only when open)
+    let chartLoaded = false;
+    chartToggleBtn.addEventListener("click", () => {
+      const willShow = !chartIframeWrapper.classList.contains("show");
+      if (willShow && !chartLoaded) {
+        const iframe = document.createElement("iframe");
+        iframe.src = "https://dexscreener.com/solana/" + CA + "?embed=1&theme=dark";
+        iframe.setAttribute("allow", "clipboard-write");
+        iframe.setAttribute("loading", "lazy");
+        iframe.title = "$UNC Live Chart";
+        chartIframeWrapper.appendChild(iframe);
+        chartLoaded = true;
+      }
+      chartIframeWrapper.classList.toggle("show", willShow);
+      chartToggleBtn.textContent = willShow ? "📊 Close Live Chart" : "📊 Toggle Live Chart";
+    });
+    // Copy-to-clipboard + toast
+    document.querySelectorAll("[data-copy]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const address = button.dataset.copy;
+        try { await navigator.clipboard.writeText(address); }
+        catch {
+          const ta = document.createElement("textarea");
+          ta.value = address;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+        }
+        const oldText = button.textContent;
+        button.textContent = "COPIED!";
+        toast.classList.add("show");
+        setTimeout(() => {
+          button.textContent = oldText;
+          toast.classList.remove("show");
+        }, 1800);
+      });
+    });
+    // FAQ accordion
+    const faqItems = document.querySelectorAll(".faq-item");
+    faqItems.forEach((item) => {
+      const trigger = item.querySelector(".faq-trigger");
+      trigger.addEventListener("click", () => {
+        const isActive = item.classList.contains("active");
+        faqItems.forEach((i) => i.classList.remove("active"));
+        if (!isActive) item.classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>
